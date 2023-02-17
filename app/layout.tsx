@@ -1,9 +1,16 @@
-import './globals.css'
+import "./globals.css";
+import { Roboto } from "@next/font/google";
+
+const roboto = Roboto({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-roboto",
+});
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -12,7 +19,9 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body className="mx-32 my-12 text-gray-100">{children}</body>
+      <body className={`text-gray-100 ${roboto.className} p-3`}>
+        {children}
+      </body>
     </html>
-  )
+  );
 }

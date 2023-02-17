@@ -1,5 +1,6 @@
 import GuessContainer from "./components/GuessContainer";
 import WordContainer from "./components/WordContainer";
+import TopScoreContainer from "./components/TopScoreContainer";
 import { generateLetters } from "./utils/letterGenerator";
 
 export default function Home() {
@@ -8,10 +9,11 @@ export default function Home() {
   });
 
   return (
-    <main className="bg-gray-400 ">
-      <h1 className="p-4 text-2xl">Word Flow</h1>
+    <main className="bg-gray-800 p-5">
+      <h1 className="text-2xl">Word Flow</h1>
       <WordContainer letters={letters} />
       <GuessContainer letters={letters} />
+      <TopScoreContainer />
     </main>
   );
 }

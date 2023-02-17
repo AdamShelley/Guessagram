@@ -26,7 +26,7 @@ export default function GuessCard({ letters, setWord }: LetterProps) {
   };
 
   return (
-    <div className="bg-white rounded m-1 h-10 flex justify-center">
+    <div className="bg-white rounded-sm m-1 h-10 w-full flex justify-center">
       <input
         maxLength={6}
         className="text-gray-900 m-1 text-center"

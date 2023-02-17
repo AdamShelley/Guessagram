@@ -16,17 +16,18 @@ export default function SubmitButton({ completeWord }: WordProps) {
       console.log("No word entered");
     }
 
-    console.log("Fetching from API");
-
     const res = await fetch(
       `https://api.dictionaryapi.dev/api/v2/entries/en/${completeWord}`
     );
 
     const data = await res.json();
-    console.log(data);
 
     if (data.title === "No Definitions Found") {
       return setError("Not a real word");
+    }
+
+    if (correctWordlist.includes(data[0].word)) {
+      return setError("Already added that word!");
     }
 
     setCorrectWordlist((prev) => [...prev, data[0].word]);
@@ -34,12 +35,18 @@ export default function SubmitButton({ completeWord }: WordProps) {
   };
 
   return (
-    <>
-      <button type="submit" onClick={getWord} className="rounded bg-black p-2">
+    <div className="flex flex-col align-center justify-center">
+      <button
+        type="submit"
+        onClick={getWord}
+        className="text-sm bg-teal-900 text-white py-2 px-6 rounded disabled:opacity-25 self-center"
+      >
         Submit answer
       </button>
-      {error && <p>{error}</p>}
+      <div className="mt-3 order-2 border-rose-500">
+        {error && <p>{error}</p>}
+      </div>
       <ScoreContainer correctWordlist={correctWordlist} />
-    </>
+    </div>
   );
 }

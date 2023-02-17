@@ -6,10 +6,10 @@ interface LetterProps {
 
 export default function WordContainer({ letters }: LetterProps) {
   return (
-    <div className="p-5">
+    <div className="mt-5">
       <h2>Todays letters: </h2>
 
-      <div className="flex justify-center align-center">
+      <div className="m-2 p-2 flex justify-center align-center">
         {letters.map((letter) => (
           <LetterCard key={letter} letter={letter} />
         ))}
