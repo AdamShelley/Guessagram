@@ -43,10 +43,12 @@ export default function SubmitButton({ completeWord }: WordProps) {
       >
         Submit answer
       </button>
-      <div className="mt-3 order-2 border-rose-500">
-        {error && <p>{error}</p>}
+      <div className="mt-3 order-2 border-rose-500 self-center">
+        {error && <p className="text-red-300">{error}</p>}
       </div>
-      <ScoreContainer correctWordlist={correctWordlist} />
+      {correctWordlist.length >= 1 && (
+        <ScoreContainer correctWordlist={correctWordlist} />
+      )}
     </div>
   );
 }

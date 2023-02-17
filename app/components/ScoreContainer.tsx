@@ -60,12 +60,12 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
   console.log(wordListWithScore);
 
   return (
-    <div className="mt-5">
-      <h3>Score Container</h3>
-      <h4>Your Score: {score}</h4>
+    <div className="mt-20">
+      <h3 className="text-2xl">Score Container</h3>
+      <h4 className="mt-3">Your Score: {score}</h4>
       <ul className="m-5">
         {wordListWithScore?.map((word) => (
-          <li className="m-2 p-2 grid gap-2 grid-cols-2">
+          <li className="m-2 p-2 grid gap-2 grid-cols-2 justify-center align-center text-center">
             <p className="text-gray-100 text-2xl">{word.word}</p>
             <p className="m-2">{word.score} points</p>
           </li>
