@@ -1,22 +1,18 @@
 import LetterCard from "./LetterCard";
 
-export default function WordContainer() {
+interface LetterProps {
+  letters: string[];
+}
 
-// Letter generator
-  function generateRandomLetter() {
-    const alphabet = "abcdefghijklmnopqrstuvwxyz";
-
-    return alphabet[Math.floor(Math.random() * alphabet.length)].toUpperCase();
-  }
-
-
-
+export default function WordContainer({ letters }: LetterProps) {
   return (
     <div className="p-5">
-      <h2>Word Container</h2>
+      <h2>Todays letters: </h2>
 
-      <div>
-        <LetterCard letter={generateRandomLetter()} />
+      <div className="flex justify-center align-center">
+        {letters.map((letter) => (
+          <LetterCard key={letter} letter={letter} />
+        ))}
       </div>
     </div>
   );
