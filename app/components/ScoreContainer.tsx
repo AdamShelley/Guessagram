@@ -1,13 +1,41 @@
-interface CorrectWordProp {
-  correctWordlist: string[];
-}
+"use client";
 
-interface ScoreOptions {
+import { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios, { AxiosError } from "axios";
+
+type CorrectWordProp = {
+  correctWordlist: string[];
+};
+
+type ScoreOptions = {
   [key: string]: number;
-}
+};
+
+type FormData = {
+  userName: string;
+  score: number;
+};
 
 export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
-  let score = 0;
+  const [userName, setUserName] = useState("");
+  const [score, setScore] = useState(0);
+
+  const { mutate } = useMutation(
+    async (data: FormData) =>
+      await axios.post("/api/highscore/postScore", { data }),
+    {
+      onError: (error) => {
+        console.log(error);
+
+        if (error instanceof AxiosError) {
+        }
+      },
+      onSuccess: (data) => {
+        console.log(data);
+      },
+    }
+  );
 
   const calculateScore = (word: string) => {
     const scores: ScoreOptions = {
@@ -46,7 +74,6 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
       wordScore += num;
     });
 
-    score += wordScore;
     return wordScore;
   };
 
@@ -57,7 +84,13 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
     };
   });
 
-  console.log(wordListWithScore);
+  const submitScore = (e: React.FormEvent) => {
+    console.log("submitting");
+    e.preventDefault();
+    mutate({ userName, score });
+  };
+
+  // Calculate total score
 
   return (
     <div className="mt-20">
@@ -71,6 +104,23 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
           </li>
         ))}
       </ul>
+      <div>Submit result</div>
+      <form onSubmit={submitScore} className="flex flex-col">
+        <label htmlFor="name">Name</label>
+        <input
+          className="text-gray-900 p-2 m-2"
+          type="text"
+          name="name"
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <p>Score: {score}</p>
+        <button
+          id="submit"
+          className="text-sm bg-teal-900 text-white py-2 px-6 rounded disabled:opacity-25 self-center"
+        >
+          Submit
+        </button>
+      </form>
     </div>
   );
 }

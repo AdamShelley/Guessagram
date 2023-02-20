@@ -10,32 +10,32 @@ export default function Home() {
     vowels: 2,
   });
 
-  const midnightReset = () => {
-    const now = new Date();
-    // let night = now;
-    // night.setDate(new Date().getDate() + 1);
-    // night.setHours(0, 0, 0);
+  // const midnightReset = () => {
+  //   const now = new Date();
+  //   // let night = now;
+  //   // night.setDate(new Date().getDate() + 1);
+  //   // night.setHours(0, 0, 0);
 
-    let night = new Date(now.getTime() + 10000);
+  //   let night = new Date(now.getTime() + 10000);
 
-    let msToMidnight = night.getTime() - now.getTime();
+  //   let msToMidnight = night.getTime() - now.getTime();
 
-    setTimeout(() => {
-      console.log("Generating new letters");
-      letters = generateLetters({
-        vowels: 2,
-      });
+  //   setTimeout(() => {
+  //     console.log("Generating new letters");
+  //     letters = generateLetters({
+  //       vowels: 2,
+  //     });
 
-      console.log(letters);
-      midnightReset();
-    }, msToMidnight);
-  };
+  //     console.log(letters);
+  //     midnightReset();
+  //   }, msToMidnight);
+  // };
 
-  midnightReset();
+  // midnightReset();
 
   return (
-    <main className="bg-gray-800 p-5">
-      <h1 className="text-2xl">Word Flow</h1>
+    <main className="bg-gray-800 p-5 h-screen">
+      <h1 className="text-2xl">wordFlow</h1>
       <WordContainer letters={letters} />
       <GuessContainer letters={letters} />
       <TopScoreContainer />
