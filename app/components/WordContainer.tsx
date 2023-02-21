@@ -12,21 +12,21 @@ const fetchLetters = async () => {
 
 export default function WordContainer() {
   // TEMP - USE CRON TO CALL?
-  // const { mutate } = useMutation(
-  //   async () => await axios.post("/api/highscore/generateLetters"),
-  //   {
-  //     onError: (error) => {
-  //       console.log(error);
-  //     },
-  //     onSuccess: (data) => {
-  //       console.log(data);
-  //     },
-  //   }
-  // );
+  const { mutate } = useMutation(
+    async () => await axios.post("/api/highscore/generateLetters"),
+    {
+      onError: (error) => {
+        console.log(error);
+      },
+      onSuccess: (data) => {
+        console.log(data);
+      },
+    }
+  );
 
-  // useEffect(() => {
-  //   mutate();
-  // }, []);
+  useEffect(() => {
+    mutate();
+  }, []);
   // END OF TEMP
 
   // Fetch the letters of the day
