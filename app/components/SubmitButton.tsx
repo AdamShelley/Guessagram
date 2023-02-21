@@ -11,11 +11,18 @@ interface WordProps {
 
 export default function SubmitButton({ completeWord, setWord }: WordProps) {
   const [correctWordlist, setCorrectWordlist] = useState<string[]>([]);
-  const [error, setError] = useState("");
+  const [tries, setTries] = useState<number>(0);
+  const [error, setError] = useState<string>("");
 
   const getWord = async () => {
     if (completeWord === "") {
       console.log("No word entered");
+    }
+
+    if (tries >= 10) {
+      console.log("You have had your max number of words for the day");
+      toast.error("You have already provided 10 words, come back tomorrow!");
+      return;
     }
 
     const res = await fetch(
@@ -35,6 +42,7 @@ export default function SubmitButton({ completeWord, setWord }: WordProps) {
     setCorrectWordlist((prev) => [...prev, data[0].word]);
     setError("");
     setWord("");
+    setTries((prev) => prev + 1);
     toast("Word Added", {
       icon: "👏",
       style: {
@@ -50,10 +58,12 @@ export default function SubmitButton({ completeWord, setWord }: WordProps) {
       <button
         type="submit"
         onClick={getWord}
+        disabled={tries >= 10}
         className="w-6/12 text-sm bg-teal-700 text-white py-2 px-6 rounded disabled:opacity-25 self-center"
       >
-        Submit answer
+        Submit Word
       </button>
+      <div className="mt-2">{`${tries}`}/10 words</div>
       <div className="mt-3 order-2 border-rose-500 self-center">
         {error && <p className="text-red-300">{error}</p>}
       </div>

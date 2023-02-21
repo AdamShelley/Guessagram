@@ -106,7 +106,9 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
       JSON.stringify({ submitted: true })
     );
 
-    toast.success("Your Score has been submitted - did you make the top 10?");
+    toast.success("Your Score has been submitted - did you make the top 10?", {
+      duration: 5000,
+    });
   };
 
   useEffect(() => {

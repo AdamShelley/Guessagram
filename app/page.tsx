@@ -6,8 +6,9 @@ export default function Home() {
   return (
     <main className="bg-gray-800 p-5 h-max">
       <h1 className="text-4xl">Word Flow</h1>
+      <p className="text-sm italic">WIP - Proof of concept</p>
       <WordContainer />
-      <GuessContainer />
+      {/* <GuessContainer /> */}
       <TopScoreContainer />
     </main>
   );
