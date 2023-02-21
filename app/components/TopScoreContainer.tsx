@@ -32,7 +32,7 @@ export default function TopScoreContainer() {
           </tr>
         </thead>
         <tbody>
-          {data.map((top: Scores) => (
+          {data?.map((top: Scores) => (
             <tr key={`${top.userName}-${top.score}`}>
               <td className="p-2 border border-slate-600">{top.score}</td>
               <td className="p-2 border border-slate-600">{top.userName}</td>
