@@ -34,7 +34,7 @@ export default function Home() {
   // midnightReset();
 
   return (
-    <main className="bg-gray-800 p-5 h-screen">
+    <main className="bg-gray-800 p-5 h-max">
       <h1 className="text-2xl">wordFlow</h1>
       <WordContainer letters={letters} />
       <GuessContainer letters={letters} />

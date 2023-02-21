@@ -1,38 +1,35 @@
-"use client";
+import { ChangeEvent } from "react";
 
-import { ChangeEvent, useState } from "react";
-
-interface LetterProps {
+type LetterProps = {
   letters: string[];
-  setWord: any;
-}
+  word: string;
+  setWord: (newWord: string) => void;
+};
 
-export default function GuessCard({ letters, setWord }: LetterProps) {
-  const [letter, setLetter] = useState<string>("");
-
+export default function GuessCard({ letters, word, setWord }: LetterProps) {
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     // Check the letter is in the letter string
 
     const latestLetter = e.target.value.charAt(e.target.value.length - 1);
 
     if (latestLetter === "") {
-      setLetter("");
+      setWord("");
     }
 
     if (letters.includes(latestLetter.toUpperCase())) {
-      setLetter(e.target.value);
       setWord(e.target.value);
     }
   };
 
   return (
-    <div className="bg-white rounded-sm m-1 h-10 w-full flex justify-center">
+    <div className="bg-white rounded-sm m-1 h-10 w-6/12 flex justify-center">
       <input
         maxLength={6}
         className="text-gray-900 w-full text-center"
         type="text"
-        value={letter}
+        value={word}
         onChange={handleInput}
+        autoComplete="false"
       />
     </div>
   );

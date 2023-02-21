@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 
@@ -20,6 +20,7 @@ type FormData = {
 export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
   const [userName, setUserName] = useState("");
   const [score, setScore] = useState(0);
+  const queryClient = useQueryClient();
 
   const { mutate } = useMutation(
     async (data: FormData) =>
@@ -33,10 +34,12 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
       },
       onSuccess: (data) => {
         console.log(data);
+        queryClient.invalidateQueries(["get-scores"]);
       },
     }
   );
 
+  // Calculate the individual word score
   const calculateScore = (word: string) => {
     const scores: ScoreOptions = {
       a: 1,
@@ -77,6 +80,7 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
     return wordScore;
   };
 
+  // Organise word list
   const wordListWithScore = correctWordlist.map((word) => {
     return {
       word,
@@ -84,13 +88,21 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
     };
   });
 
+  // Calculate total score
+  const totalScore = wordListWithScore.reduce((acc, obj) => {
+    return acc + obj.score;
+  }, 0);
+
+  // Submit Score to Top Score database
   const submitScore = (e: React.FormEvent) => {
     console.log("submitting");
     e.preventDefault();
     mutate({ userName, score });
   };
 
-  // Calculate total score
+  useEffect(() => {
+    setScore(totalScore);
+  }, [correctWordlist]);
 
   return (
     <div className="mt-20">

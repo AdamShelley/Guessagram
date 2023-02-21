@@ -5,9 +5,10 @@ import ScoreContainer from "./ScoreContainer";
 
 interface WordProps {
   completeWord: string;
+  setWord: (word: string) => void;
 }
 
-export default function SubmitButton({ completeWord }: WordProps) {
+export default function SubmitButton({ completeWord, setWord }: WordProps) {
   const [correctWordlist, setCorrectWordlist] = useState<string[]>([]);
   const [error, setError] = useState("");
 
@@ -32,6 +33,8 @@ export default function SubmitButton({ completeWord }: WordProps) {
 
     setCorrectWordlist((prev) => [...prev, data[0].word]);
     setError("");
+
+    setWord("");
   };
 
   return (

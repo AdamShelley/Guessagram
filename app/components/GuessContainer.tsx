@@ -15,9 +15,9 @@ export default function GuessContainer({ letters }: LetterProps) {
     <div className="flex flex-col">
       <h2>Guess Container</h2>
       <div className="flex justify-center align-center py-5">
-        <GuessCard letters={letters} setWord={setWord} />
+        <GuessCard letters={letters} word={word} setWord={setWord} />
       </div>
-      <SubmitButton completeWord={word} />
+      <SubmitButton completeWord={word} setWord={setWord} />
     </div>
   );
 }
