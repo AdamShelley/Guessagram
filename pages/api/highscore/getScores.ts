@@ -15,6 +15,8 @@ export default async function handler(
         take: 10,
       });
 
+      console.log(data);
+
       res.status(200).json(data);
     } catch (err) {
       console.log(err);
