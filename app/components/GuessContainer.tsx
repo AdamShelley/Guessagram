@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { checkLocalStorage } from "../utils/checkLocalStorage";
 import GuessCard from "./GuessCard";
 import SubmitButton from "./SubmitButton";
@@ -10,15 +10,22 @@ interface LetterProps {
   letters: string[];
 }
 
+type LocalStorageSubmit = {
+  submitted: boolean;
+};
+
 export default function GuessContainer({ letters }: LetterProps) {
   const [word, setWord] = useState("");
 
-  let successfulSubmittedResult;
-  if (typeof window !== undefined) {
-    successfulSubmittedResult = checkLocalStorage();
-  }
+  let successSubmittedResult = false;
 
-  if (successfulSubmittedResult?.submitted) return <SubmitSuccess />;
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      successSubmittedResult = checkLocalStorage();
+    }
+  }, []);
+
+  if (successSubmittedResult) return <SubmitSuccess />;
 
   return (
     <div className="flex flex-col">
