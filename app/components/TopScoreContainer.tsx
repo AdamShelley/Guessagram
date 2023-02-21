@@ -34,8 +34,12 @@ export default function TopScoreContainer() {
         <tbody>
           {data?.map((top: Scores) => (
             <tr key={`${top.userName}-${top.score}`}>
-              <td className="p-2 border border-slate-600">{top.score}</td>
-              <td className="p-2 border border-slate-600">{top.userName}</td>
+              <td className="text-center p-2 border border-slate-600">
+                {top.score}
+              </td>
+              <td className="text-center p-2 border border-slate-600">
+                {top.userName}
+              </td>
             </tr>
           ))}
         </tbody>

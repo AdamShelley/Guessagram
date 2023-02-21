@@ -9,10 +9,6 @@ export default async function handler(
     console.log("Posting");
     const { userName, score } = req.body.data;
 
-    console.log("Name is: " + req.body.name);
-
-    console.log("Score is: " + req.body.score);
-
     try {
       // Create user
       const user = await prisma.score.create({
@@ -21,8 +17,6 @@ export default async function handler(
           score,
         },
       });
-
-      console.log(user);
 
       res.status(200).json(user);
     } catch (err) {

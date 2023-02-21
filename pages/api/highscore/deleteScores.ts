@@ -10,8 +10,6 @@ export default async function handler(
       // Create user
       const deleteAllScores = await prisma.score.deleteMany();
 
-      console.log(deleteAllScores);
-
       res.status(200).json(deleteAllScores);
     } catch (err) {
       console.log(err);

@@ -15,3 +15,8 @@ model Score {
   id       Int    @id @default(autoincrement())
   score    Int
 }
+
+model Letters {
+  letter String[]
+  id     Int      @id @default(autoincrement())
+}
