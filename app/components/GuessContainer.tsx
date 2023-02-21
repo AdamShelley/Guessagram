@@ -13,7 +13,10 @@ interface LetterProps {
 export default function GuessContainer({ letters }: LetterProps) {
   const [word, setWord] = useState("");
 
-  const successfulSubmittedResult = checkLocalStorage();
+  let successfulSubmittedResult;
+  if (typeof window !== undefined) {
+    successfulSubmittedResult = checkLocalStorage();
+  }
 
   if (successfulSubmittedResult?.submitted) return <SubmitSuccess />;
 
