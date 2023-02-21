@@ -21,6 +21,8 @@ export default function GuessCard({ letters, word, setWord }: LetterProps) {
     }
   };
 
+  console.log(letters);
+
   return (
     <div className="bg-white rounded-sm m-1 h-10 w-6/12 flex justify-center">
       <input

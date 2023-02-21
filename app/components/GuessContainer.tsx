@@ -26,19 +26,19 @@ export default function GuessContainer() {
 
   if (successSubmittedResult) return <SubmitSuccess />;
 
-  const { data, isLoading } = useQuery({
+  const { data } = useQuery({
     queryFn: fetchLetters,
     queryKey: ["get-letters"],
   });
-
-  if (isLoading) return <p>loading..</p>;
 
   return (
     <>
       {!successSubmittedResult && (
         <div className="flex flex-col">
           <div className="flex justify-center align-center py-2 mt-5">
-            <GuessCard letters={data?.letters} word={word} setWord={setWord} />
+            {data && (
+              <GuessCard letters={data?.letter} word={word} setWord={setWord} />
+            )}
           </div>
           <SubmitButton completeWord={word} setWord={setWord} />
         </div>
