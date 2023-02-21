@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
+import { toast } from "react-hot-toast";
 
 type CorrectWordProp = {
   correctWordlist: string[];
@@ -104,6 +105,8 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
       "word-flow-submit",
       JSON.stringify({ submitted: true })
     );
+
+    toast.success("Your Score has been submitted - did you make the top 10?");
   };
 
   useEffect(() => {

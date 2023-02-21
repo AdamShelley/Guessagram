@@ -12,8 +12,6 @@ export default async function handler(
 
       const generatedLetters = generateLetters({ vowels: 2 });
 
-      console.log(generatedLetters);
-
       await prisma.letters.deleteMany();
 
       const letters = await prisma.letters.create({

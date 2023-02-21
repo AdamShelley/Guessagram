@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import ScoreContainer from "./ScoreContainer";
 
 interface WordProps {
@@ -33,8 +34,15 @@ export default function SubmitButton({ completeWord, setWord }: WordProps) {
 
     setCorrectWordlist((prev) => [...prev, data[0].word]);
     setError("");
-
     setWord("");
+    toast("Word Added", {
+      icon: "👏",
+      style: {
+        borderRadius: "10px",
+        background: "#333",
+        color: "#fff",
+      },
+    });
   };
 
   return (

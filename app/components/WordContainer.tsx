@@ -1,8 +1,8 @@
 "use client";
 
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useEffect } from "react";
+
 import LetterCard from "./LetterCard";
 
 const fetchLetters = async () => {
@@ -11,24 +11,6 @@ const fetchLetters = async () => {
 };
 
 export default function WordContainer() {
-  // TEMP - USE CRON TO CALL?
-  // const { mutate } = useMutation(
-  //   async () => await axios.post("/api/highscore/generateLetters"),
-  //   {
-  //     onError: (error) => {
-  //       console.log(error);
-  //     },
-  //     onSuccess: (data) => {
-  //       console.log(data);
-  //     },
-  //   }
-  // );
-
-  // useEffect(() => {
-  //   mutate();
-  // }, []);
-  // END OF TEMP
-
   // Fetch the letters of the day
   const { data, isLoading } = useQuery({
     queryFn: fetchLetters,
