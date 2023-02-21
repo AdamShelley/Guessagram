@@ -42,7 +42,7 @@ export default function SubmitButton({ completeWord, setWord }: WordProps) {
       <button
         type="submit"
         onClick={getWord}
-        className="text-sm bg-teal-900 text-white py-2 px-6 rounded disabled:opacity-25 self-center"
+        className="w-6/12 text-sm bg-teal-700 text-white py-2 px-6 rounded disabled:opacity-25 self-center"
       >
         Submit answer
       </button>

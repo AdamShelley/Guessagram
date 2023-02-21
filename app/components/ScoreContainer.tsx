@@ -98,6 +98,12 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
     console.log("submitting");
     e.preventDefault();
     mutate({ userName, score });
+
+    // Add localstorage to only show scores
+    localStorage.setItem(
+      "word-flow-submit",
+      JSON.stringify({ submitted: true })
+    );
   };
 
   useEffect(() => {
@@ -110,22 +116,27 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
       <h4 className="mt-3">Your Score: {score}</h4>
       <ul className="m-5">
         {wordListWithScore?.map((word) => (
-          <li className="m-2 p-2 grid gap-2 grid-cols-2 justify-center align-center text-center">
+          <li
+            className="m-2 p-2 grid gap-2 grid-cols-2 justify-center align-center text-center"
+            key={word.word}
+          >
             <p className="text-gray-100 text-2xl">{word.word}</p>
             <p className="m-2">{word.score} points</p>
           </li>
         ))}
       </ul>
-      <div>Submit result</div>
+      <h3 className="text-2xl">Submit result</h3>
       <form onSubmit={submitScore} className="flex flex-col">
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name" className="mt-5">
+          Add a name
+        </label>
         <input
-          className="text-gray-900 p-2 m-2"
+          className="text-gray-900 p-2 my-2"
           type="text"
           name="name"
           onChange={(e) => setUserName(e.target.value)}
         />
-        <p>Score: {score}</p>
+        <p className="mt-1">Score: {score}</p>
         <button
           id="submit"
           className="text-sm bg-teal-900 text-white py-2 px-6 rounded disabled:opacity-25 self-center"

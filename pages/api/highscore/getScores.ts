@@ -18,6 +18,9 @@ export default async function handler(
       res.status(200).json(data);
     } catch (err) {
       console.log(err);
+      res
+        .status(403)
+        .json({ message: "There has been an issue getting the scores." });
     }
   }
 }
