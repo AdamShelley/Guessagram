@@ -39,13 +39,13 @@ export default function LetterCard() {
           i
         </span>
         {data?.letter.map((letter: string) => (
-          <p
+          <button
             onClick={letterClick}
             data-letter={letter}
-            className="w-10 m-2 p-3 text-gray-900 text-2xl text-center bg-white"
+            className="cursor-pointer w-10 m-2 p-3 text-gray-900 text-2xl text-center bg-white active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out	duration-300"
           >
             {letter}
-          </p>
+          </button>
         ))}
       </div>
       <GuessContainer
