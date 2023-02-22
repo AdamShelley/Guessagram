@@ -6,9 +6,9 @@ import SubmitButton from "./GuessContainer/SubmitButton";
 import WordContainer from "./TodaysLetters/WordContainer";
 
 export default function () {
-  const [letterClicked, setLetterClick] = useState("");
-  const [word, setWord] = useState("");
-  const [error, setError] = useState("");
+  const [letterClicked, setLetterClick] = useState<string>("");
+  const [word, setWord] = useState<string>("");
+  const [error, setError] = useState<string>("");
   
 
   return (

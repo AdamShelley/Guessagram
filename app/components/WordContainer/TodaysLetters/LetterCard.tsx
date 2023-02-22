@@ -13,7 +13,7 @@ const fetchLetters = async () => {
   return response.data;
 };
 
-export default function LetterCard({ setLetterClick, setWord }: LetterClick) {
+export default function LetterCard({ setLetterClick, setWord }:LetterClick) {
   // Fetch the letters of the day
 
   const { data, isLoading } = useQuery({
@@ -28,7 +28,7 @@ export default function LetterCard({ setLetterClick, setWord }: LetterClick) {
     setLetterClick(e.target.dataset.letter);
   };
   const clickBackspace = () => {
-    setWord((prevWord) => prevWord.slice(0, -1));
+    setWord((prevWord:string) => prevWord.slice(0, -1));
   };
 
   return (
