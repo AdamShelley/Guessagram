@@ -4,8 +4,7 @@ import { useEffect } from "react";
 import { checkLocalStorage } from "../../../utils/checkLocalStorage";
 import GuessCard from "./GuessCard";
 import SubmitSuccess from "../../CompletedDay/SubmitSuccess";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
+
 
 type GuessProps = {
   letterClicked: string;
@@ -44,10 +43,7 @@ export default function GuessContainer({
     queryKey: ["get-letters"],
   });
 
-  const clickBackspace = () => {
-    console.log("Backspace clicked");
-    setWord((prev: string) => prev.slice(0, -1));
-  };
+
 
   useEffect(() => {
     setWord((prev: string) => prev + letterClicked);
@@ -70,13 +66,10 @@ export default function GuessContainer({
                     word={word}
                     setWord={setWord}
                   />
-                  <FontAwesomeIcon onClick={clickBackspace} className="ml-2 text-3xl self-center" icon={faDeleteLeft}/>
                 </div>
               </div>
             )}
           </div>
-
-      
         </div>
       )}
     </>

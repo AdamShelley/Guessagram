@@ -13,7 +13,7 @@ export default function () {
 
   return (
     <div className="flex flex-col">
-      <WordContainer setLetterClick={setLetterClick} />
+      <WordContainer setLetterClick={setLetterClick} setWord={setWord}/>
       <GuessContainer
         setLetterClick={setLetterClick}
         letterClicked={letterClicked}

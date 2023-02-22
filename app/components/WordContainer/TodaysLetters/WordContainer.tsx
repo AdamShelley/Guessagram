@@ -1,12 +1,12 @@
-import { LetterClick } from "@/app/types/setLetterClick";
+import { LetterClick } from "@/app/types/LetterClickType";
 import LetterCard from "./LetterCard";
 
-export default function WordContainer({setLetterClick}:LetterClick) {
+export default function WordContainer({setLetterClick, setWord}:LetterClick) {
   return (
     <div className="mt-10 text-center">
       <h2>Todays letters</h2>
       <div className="">
-        <LetterCard setLetterClick={setLetterClick}/>
+        <LetterCard setLetterClick={setLetterClick} setWord={setWord}/>
       </div>
     </div>
   );

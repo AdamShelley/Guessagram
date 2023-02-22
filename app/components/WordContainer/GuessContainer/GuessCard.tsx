@@ -30,7 +30,7 @@ export default function GuessCard({ letters, word, setWord }: LetterProps) {
           type="text"
           value={word}
           onChange={handleInput}
-          autoComplete="false"
+          autoComplete="off"
         />
       </div>
     </div>
