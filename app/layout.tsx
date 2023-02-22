@@ -1,6 +1,10 @@
+import "@fortawesome/fontawesome-svg-core/styles.css"; 
+import { config } from "@fortawesome/fontawesome-svg-core";
 import "./globals.css";
 import { Roboto } from "@next/font/google";
 import QueryWrapper from "./components/QueryWrapper";
+
+config.autoAddCss = false; 
 
 const roboto = Roboto({
   weight: ["400", "700"],

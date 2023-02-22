@@ -2,17 +2,21 @@
 
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import ScoreContainer from "./ScoreContainer";
+import ScoreContainer from "../UserSubmit/ScoreContainer";
 
-interface WordProps {
+type WordProps = {
   completeWord: string;
   setWord: (word: string) => void;
+  setError: (error: string) => void;
 }
 
-export default function SubmitButton({ completeWord, setWord }: WordProps) {
+export default function SubmitButton({
+  completeWord,
+  setWord,
+  setError,
+}: WordProps) {
   const [correctWordlist, setCorrectWordlist] = useState<string[]>([]);
   const [tries, setTries] = useState<number>(0);
-  const [error, setError] = useState<string>("");
 
   const getWord = async () => {
     if (completeWord === "") {
@@ -64,9 +68,7 @@ export default function SubmitButton({ completeWord, setWord }: WordProps) {
         Submit Word
       </button>
       <div className="mt-2">{`${tries}`}/10 words</div>
-      <div className="mt-3 order-2 border-rose-500 self-center">
-        {error && <p className="text-red-300">{error}</p>}
-      </div>
+
       {correctWordlist.length >= 1 && (
         <ScoreContainer correctWordlist={correctWordlist} />
       )}

@@ -22,15 +22,17 @@ export default function GuessCard({ letters, word, setWord }: LetterProps) {
   };
 
   return (
-    <div className="bg-white rounded-sm m-1 h-10 w-6/12 flex justify-center">
-      <input
-        maxLength={6}
-        className="text-gray-900 w-full text-center"
-        type="text"
-        value={word}
-        onChange={handleInput}
-        autoComplete="false"
-      />
+    <div className="flex flex-col align-center justify-center text-center">
+      <div className="bg-white rounded-sm h-10">
+        <input
+          maxLength={6}
+          className="text-gray-900 w-full h-full text-center"
+          type="text"
+          value={word}
+          onChange={handleInput}
+          autoComplete="false"
+        />
+      </div>
     </div>
   );
 }

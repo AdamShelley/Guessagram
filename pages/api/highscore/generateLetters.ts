@@ -2,6 +2,10 @@ import { generateLetters } from "./../../../app/utils/letterGenerator";
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../prisma/client";
 
+if (!process.env.API_KEY) {
+  throw new Error("API KEY MISSING");
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -9,6 +13,8 @@ export default async function handler(
   if (req.method === "POST") {
     try {
       // Generate new letters
+
+      // IF API KEY does not match body dont generate new letters
 
       const generatedLetters = generateLetters({ vowels: 2 });
 

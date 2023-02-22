@@ -29,8 +29,8 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
     {
       onError: (error) => {
         console.log(error);
-
         if (error instanceof AxiosError) {
+          console.log(error);
         }
       },
       onSuccess: (data) => {
@@ -117,20 +117,21 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
 
   return (
     <div className="mt-20">
-      <h3 className="text-2xl">Score Container</h3>
-      <h4 className="mt-3">Your Score: {score}</h4>
+      <h3 className="text-xl">Your Words</h3>
+      <h4 className="mt-3">Score: {score}</h4>
       <ul className="m-5">
-        {wordListWithScore?.map((word) => (
+        {wordListWithScore?.map((word, index) => (
           <li
-            className="m-2 p-2 grid gap-2 grid-cols-2 justify-center align-center text-center"
+            className="m-2 p-2 grid gap-2 grid-cols-3 justify-center align-center text-center"
             key={word.word}
           >
-            <p className="text-gray-100 text-2xl">{word.word}</p>
-            <p className="m-2">{word.score} points</p>
+            <p>{index + 1}</p>
+            <p className="text-gray-100 text-xl">{word.word}</p>
+            <p className="">{word.score} points</p>
           </li>
         ))}
       </ul>
-      <h3 className="text-2xl">Submit result</h3>
+      <h3 className="text-xl mt-10">Submit your daily result</h3>
       <form onSubmit={submitScore} className="flex flex-col">
         <label htmlFor="name" className="mt-5">
           Add a name
