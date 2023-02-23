@@ -2,20 +2,23 @@
 
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import ScoreContainer from "../UserSubmit/ScoreContainer";
 
 type WordProps = {
   completeWord: string;
   setWord: (word: string) => void;
   setError: (error: string) => void;
-}
+  correctWordlist: string[]
+  setCorrectWordlist: any
+};
 
 export default function SubmitButton({
   completeWord,
   setWord,
   setError,
+  correctWordlist,
+  setCorrectWordlist
 }: WordProps) {
-  const [correctWordlist, setCorrectWordlist] = useState<string[]>([]);
+ 
   const [tries, setTries] = useState<number>(0);
 
   const getWord = async () => {
@@ -26,6 +29,11 @@ export default function SubmitButton({
     if (tries >= 10) {
       console.log("You have had your max number of words for the day");
       toast.error("You have already provided 10 words, come back tomorrow!");
+      return;
+    }
+
+    if (completeWord.length < 3) {
+      toast.error("Words need to be 3 or more characters long.");
       return;
     }
 
@@ -43,7 +51,13 @@ export default function SubmitButton({
       return setError("Already added that word!");
     }
 
-    setCorrectWordlist((prev) => [...prev, data[0].word]);
+    setCorrectWordlist((prev: any) => [...prev, data[0].word]);
+
+    // LocalStorage
+    if (typeof window !== "undefined") {
+      handleLocalStorage(completeWord);
+    }
+
     setError("");
     setWord("");
     setTries((prev) => prev + 1);
@@ -57,21 +71,34 @@ export default function SubmitButton({
     });
   };
 
+  const handleLocalStorage = (newWord: string) => {
+    const oldwordList = localStorage.getItem("wordList");
+    
+    // handle first word
+    if (!oldwordList){
+      localStorage.setItem("wordList", JSON.stringify([newWord]));  
+      return;
+    }
+    
+    // If localstorageItem exists
+    const currentList = JSON.parse(oldwordList);
+    const newList = [newWord, ...currentList];
+    localStorage.setItem("wordList", JSON.stringify(newList));
+  };
+
   return (
     <div className="flex flex-col align-center justify-center">
       <button
         type="submit"
         onClick={getWord}
         disabled={tries >= 10}
-        className="w-6/12 text-sm bg-teal-700 text-white py-2 px-6 rounded disabled:opacity-25 self-center"
+        className="w-4/12 text-sm bg-teal-700 text-white py-2 px-6 rounded disabled:opacity-25 self-center"
       >
         Submit Word
       </button>
       <div className="mt-2">{`${tries}`}/10 words</div>
 
-      {correctWordlist.length >= 1 && (
-        <ScoreContainer correctWordlist={correctWordlist} />
-      )}
+     
     </div>
   );
 }

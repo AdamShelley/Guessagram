@@ -120,36 +120,41 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
       <h3 className="text-xl">Your Words</h3>
       <h4 className="mt-3">Score: {score}</h4>
       <ul className="m-5">
-        {wordListWithScore?.map((word, index) => (
-          <li
-            className="m-2 p-2 grid gap-2 grid-cols-3 justify-center align-center text-center"
-            key={word.word}
-          >
-            <p>{index + 1}</p>
-            <p className="text-gray-100 text-xl">{word.word}</p>
-            <p className="">{word.score} points</p>
-          </li>
-        ))}
+        {correctWordlist &&
+          wordListWithScore?.map((word, index) => (
+            <li
+              className="m-2 p-2 grid gap-2 grid-cols-3 justify-center align-center text-center"
+              key={word.word}
+            >
+              <p>{index + 1}</p>
+              <p className="text-gray-100 text-xl">{word.word}</p>
+              <p className="">{word.score} points</p>
+            </li>
+          ))}
       </ul>
-      <h3 className="text-xl mt-10">Submit your daily result</h3>
-      <form onSubmit={submitScore} className="flex flex-col">
-        <label htmlFor="name" className="mt-5">
-          Add a name
-        </label>
-        <input
-          className="text-gray-900 p-2 my-2"
-          type="text"
-          name="name"
-          onChange={(e) => setUserName(e.target.value)}
-        />
-        <p className="mt-1">Score: {score}</p>
-        <button
-          id="submit"
-          className="text-sm bg-teal-900 text-white py-2 px-6 rounded disabled:opacity-25 self-center"
-        >
-          Submit
-        </button>
-      </form>
+      {correctWordlist && wordListWithScore && (
+        <>
+          <h3 className="text-xl">Submit your daily result</h3>
+          <form onSubmit={submitScore} className="flex flex-col">
+            <label htmlFor="name" className="mt-5">
+              Add a name
+            </label>
+            <input
+              className="text-gray-900 p-2 my-2"
+              type="text"
+              name="name"
+              onChange={(e) => setUserName(e.target.value)}
+            />
+            <p className="mt-1">Score: {score}</p>
+            <button
+              id="submit"
+              className="text-sm bg-teal-900 text-white py-2 px-6 rounded disabled:opacity-25 self-center"
+            >
+              Submit
+            </button>
+          </form>
+        </>
+      )}
     </div>
   );
 }
