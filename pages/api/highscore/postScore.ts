@@ -11,12 +11,15 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     try {
-      const { userName, score } = req.body.data;
+      const { userName, score, highestScoreWord } = req.body.data;
+
+      console.log(highestScoreWord.word)
 
       const user = await prisma.score.create({
         data: {
           userName,
           score,
+          highestScore: highestScoreWord.word,
         },
       });
 

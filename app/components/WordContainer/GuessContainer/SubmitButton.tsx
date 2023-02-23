@@ -7,8 +7,8 @@ type WordProps = {
   completeWord: string;
   setWord: (word: string) => void;
   setError: (error: string) => void;
-  correctWordlist: string[]
-  setCorrectWordlist: any
+  correctWordlist: string[];
+  setCorrectWordlist: any;
 };
 
 export default function SubmitButton({
@@ -16,9 +16,8 @@ export default function SubmitButton({
   setWord,
   setError,
   correctWordlist,
-  setCorrectWordlist
+  setCorrectWordlist,
 }: WordProps) {
- 
   const [tries, setTries] = useState<number>(0);
 
   const getWord = async () => {
@@ -60,7 +59,7 @@ export default function SubmitButton({
 
     setError("");
     setWord("");
-    setTries((prev) => prev + 1);
+    setTries((prev) => prev++);
     toast("Word Added", {
       icon: "👏",
       style: {
@@ -73,13 +72,13 @@ export default function SubmitButton({
 
   const handleLocalStorage = (newWord: string) => {
     const oldwordList = localStorage.getItem("wordList");
-    
+
     // handle first word
-    if (!oldwordList){
-      localStorage.setItem("wordList", JSON.stringify([newWord]));  
+    if (!oldwordList) {
+      localStorage.setItem("wordList", JSON.stringify([newWord]));
       return;
     }
-    
+
     // If localstorageItem exists
     const currentList = JSON.parse(oldwordList);
     const newList = [newWord, ...currentList];
@@ -87,7 +86,7 @@ export default function SubmitButton({
   };
 
   return (
-    <div className="flex flex-col align-center justify-center">
+    <div className="flex flex-col align-center justify-center mt-5">
       <button
         type="submit"
         onClick={getWord}
@@ -96,9 +95,9 @@ export default function SubmitButton({
       >
         Submit Word
       </button>
-      <div className="mt-2">{`${tries}`}/10 words</div>
-
-     
+      <div className={`text-center mt-5 ${tries === 5 ? "text-green-500" : ""}`}>
+        {`${tries}`}/10 words
+      </div>
     </div>
   );
 }

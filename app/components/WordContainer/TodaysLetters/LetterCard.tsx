@@ -13,18 +13,44 @@ const fetchLetters = async () => {
   return response.data;
 };
 
+const checkDates = (first: Date, second: Date) =>
+  !(
+    first.getFullYear() === second.getFullYear() &&
+    first.getMonth() === second.getMonth() &&
+    first.getDate() === second.getDate()
+  );
+
 export default function LetterCard({ setLetterClick, setWord }: LetterClick) {
   // Fetch the letters of the day
 
   const { data, isLoading } = useQuery({
     queryFn: fetchLetters,
     queryKey: ["get-letters"],
+    onSuccess: (data) => {
+      const currentDailyLetter = JSON.parse(localStorage.getItem("dailyData")!);
+
+      const setLettersInStorage = () => {
+        const dailyData = JSON.stringify({
+          letters: data.letter,
+          date: new Date(),
+        });
+        localStorage.setItem("dailyData", dailyData);
+        localStorage.removeItem("wordList");
+      };
+
+      // If no localStorage -> Create
+      if (!currentDailyLetter) {
+        setLettersInStorage();
+      }
+
+      // If the dates do not match, add new letters and delete wordList
+      if (checkDates(new Date(), new Date(currentDailyLetter.date))) {
+        setLettersInStorage();
+      }
+    },
   });
 
   const letterClick = (e: any) => {
-    console.log("Click event");
-
-    console.log(e.target.dataset.letter);
     setLetterClick(e.target.dataset.letter);
   };
   const clickBackspace = () => {

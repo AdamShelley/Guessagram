@@ -8,9 +8,11 @@ import ScoreContainer from "./UserSubmit/ScoreContainer";
 
 export default function () {
   const [correctWordlist, setCorrectWordlist] = useState<string[]>([]);
+  const [submittedScore, setSubmittedScore] = useState(false)
   const [letterClicked, setLetterClick] = useState<string>("");
   const [word, setWord] = useState<string>("");
   const [error, setError] = useState<string>("");
+
 
 
   useEffect(()=>{
@@ -18,6 +20,13 @@ export default function () {
     if (wordsAlreadySubmitted){
       setCorrectWordlist(wordsAlreadySubmitted);
     }
+
+    const submittedScoreStatus = JSON.parse(localStorage.getItem('word-flow-submit')!)
+    if (submittedScoreStatus && submittedScoreStatus.submitted) {
+      setSubmittedScore(true)
+    }
+   
+
   },[])
 
   return (
@@ -37,7 +46,7 @@ export default function () {
         setWord={setWord}
         setError={setError}
       />
-      <ScoreContainer correctWordlist={correctWordlist} />
+      <ScoreContainer correctWordlist={correctWordlist} submittedScore={submittedScore}/>
     </div>
   );
 }

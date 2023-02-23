@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 
 type CorrectWordProp = {
   correctWordlist: string[];
+  submittedScore: boolean
 };
 
 type ScoreOptions = {
@@ -16,9 +17,13 @@ type ScoreOptions = {
 type FormData = {
   userName: string;
   score: number;
+  highestScoreWord: {
+    word: string;
+    score: number;
+  };
 };
 
-export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
+export default function ScoreContainer({ correctWordlist, submittedScore }: CorrectWordProp) {
   const [userName, setUserName] = useState("");
   const [score, setScore] = useState(0);
   const queryClient = useQueryClient();
@@ -37,11 +42,13 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
         console.log(data);
         queryClient.invalidateQueries(["get-scores"]);
       },
+      
     }
   );
 
   // Calculate the individual word score
   const calculateScore = (word: string) => {
+    console.log("Checking " + word);
     const scores: ScoreOptions = {
       a: 1,
       b: 3,
@@ -74,31 +81,45 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
     let wordScore: number = 0;
 
     word.split("").forEach((letter: string) => {
-      const num: number = scores[letter];
+      const num: number = scores[letter.toLowerCase()];
       wordScore += num;
     });
 
     return wordScore;
   };
 
+  const generateWordListWithScore = () => {
+    console.log("Generating local storage scores");
+    return correctWordlist.map((word) => {
+      return {
+        word,
+        score: calculateScore(word),
+      };
+    });
+  };
+
   // Organise word list
-  const wordListWithScore = correctWordlist.map((word) => {
-    return {
-      word,
-      score: calculateScore(word),
-    };
-  });
+  let wordListWithScore = generateWordListWithScore();
+  console.log(wordListWithScore);
 
   // Calculate total score
-  const totalScore = wordListWithScore.reduce((acc, obj) => {
+  const totalScore = wordListWithScore?.reduce((acc, obj) => {
     return acc + obj.score;
   }, 0);
 
   // Submit Score to Top Score database
   const submitScore = (e: React.FormEvent) => {
-    console.log("submitting");
     e.preventDefault();
-    mutate({ userName, score });
+
+    if (!userName) return;
+
+    const amounts = wordListWithScore.map((a) => a.score);
+    const highestScore = Math.max(...amounts);
+    const highestScoreWord = wordListWithScore.filter(
+      (word) => word.score === highestScore
+    )[0];
+
+    mutate({ userName, score, highestScoreWord });
 
     // Add localstorage to only show scores
     localStorage.setItem(
@@ -112,6 +133,7 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
   };
 
   useEffect(() => {
+    wordListWithScore = generateWordListWithScore();
     setScore(totalScore);
   }, [correctWordlist]);
 
@@ -123,18 +145,18 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
         {correctWordlist &&
           wordListWithScore?.map((word, index) => (
             <li
-              className="m-2 p-2 grid gap-2 grid-cols-3 justify-center align-center text-center"
+              className="text-md m-2 p-2 grid gap-10 grid-cols-3 justify-center align-center text-center"
               key={word.word}
             >
               <p>{index + 1}</p>
-              <p className="text-gray-100 text-xl">{word.word}</p>
-              <p className="">{word.score} points</p>
+              <p className="text-gray-100 text-md">{word.word.toUpperCase()}</p>
+              <p className="text-md">{word.score} points</p>
             </li>
           ))}
       </ul>
-      {correctWordlist && wordListWithScore && (
+      {correctWordlist && wordListWithScore && !submittedScore && (
         <>
-          <h3 className="text-xl">Submit your daily result</h3>
+          <h3 className="text-xl mt-20">Submit your daily result</h3>
           <form onSubmit={submitScore} className="flex flex-col">
             <label htmlFor="name" className="mt-5">
               Add a name
@@ -155,6 +177,7 @@ export default function ScoreContainer({ correctWordlist }: CorrectWordProp) {
           </form>
         </>
       )}
+      {submittedScore && <p>...Already submitted</p>}
     </div>
   );
 }

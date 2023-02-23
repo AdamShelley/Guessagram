@@ -11,9 +11,10 @@ datasource db {
 }
 
 model Score {
-  userName String @unique
-  id       Int    @id @default(autoincrement())
-  score    Int
+  userName     String @unique
+  id           Int    @id @default(autoincrement())
+  score        Int
+  highestScore String @default("test")
 }
 
 model Letters {

@@ -6,6 +6,7 @@ import axios from "axios";
 type Scores = {
   userName: string;
   score: number;
+  highestScore: string;
 };
 
 const fetchScores = async () => {
@@ -35,7 +36,7 @@ export default function TopScoreTable() {
               {top.userName}
             </td>
             <td className="text-center p-2 border border-slate-600">
-              Best word
+              {top.highestScore}
             </td>
           </tr>
         ))}
