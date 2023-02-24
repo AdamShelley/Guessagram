@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState } from "react";
 import Rules from "../Rules/Rules";
@@ -7,13 +7,22 @@ export default function Navbuttons() {
   const [showRules, setShowRules] = useState(false);
   return (
     <>
-      <ul>
+      <ul className="flex align-center justify-center text-center">
         <li>
-          <button className="text-2xl border-2 rounded-xl w-10 h-10 bg-slate-700" onClick={() => setShowRules(true)}>i</button>
+          <button
+            className="w-8 h-8 bg-slate-700 m-1 rounded-md"
+            onClick={() => setShowRules(true)}
+          >
+            i
+          </button>
         </li>
-        <li></li>
+        <li>
+          <button onClick={() => {}} className="w-12 h-8 bg-slate-700 m-1 rounded-md">
+            Stats
+          </button>
+        </li>
       </ul>
-      {showRules && <Rules setShowRules={setShowRules}/>}
+      {showRules && <Rules setShowRules={setShowRules} />}
     </>
   );
 }

@@ -160,7 +160,7 @@ export default function ScoreContainer({
             </li>
           ))}
       </ul>
-      {correctWordlist && wordListWithScore && !submittedScore && (
+      {wordListWithScore.length >= 1 && !submittedScore && (
         <>
           <h3 className="text-xl mt-20">Submit your daily result</h3>
           <form onSubmit={submitScore} className="flex flex-col">
@@ -183,7 +183,7 @@ export default function ScoreContainer({
           </form>
         </>
       )}
-      {submittedScore && <p>...Already submitted</p>}
+      
     </div>
   );
 }

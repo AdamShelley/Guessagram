@@ -6,7 +6,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "GET") {
-    console.log("GETTING SCORES");
     try {
       const data = await prisma.score.findMany({
         orderBy: {

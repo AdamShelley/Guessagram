@@ -11,6 +11,7 @@ type GuessProps = {
   word: string;
   setWord: (letter: any) => void;
   error: string;
+  submittedScore: boolean
 };
 
 const fetchLetters = async () => {
@@ -24,10 +25,10 @@ export default function GuessContainer({
   word,
   setWord,
   error,
+  submittedScore
 }: GuessProps) {
-  let successSubmittedResult = false;
-
-  if (successSubmittedResult) return <SubmitSuccess />;
+  
+  if (submittedScore) return <SubmitSuccess />;
 
   const { data } = useQuery({
     queryFn: fetchLetters,
@@ -39,11 +40,14 @@ export default function GuessContainer({
       setWord((prev: string) => prev + letterClicked);
       setLetterClick("");
     }
+
+    
+
   }, [letterClicked]);
 
   return (
     <>
-      {!successSubmittedResult && (
+      { !submittedScore && (
         <div className="flex flex-col">
           <div className="flex justify-center align-center py-2 mt-5">
             {data && (
@@ -56,6 +60,7 @@ export default function GuessContainer({
                     letters={data?.letter}
                     word={word}
                     setWord={setWord}
+
                   />
                 </div>
               </div>

@@ -36,19 +36,20 @@ export default function () {
         word={word}
         setWord={setWord}
         error={error}
+        submittedScore={submittedScore}
       />
-      <SubmitButton
+      {!submittedScore && <SubmitButton
         setCorrectWordlist={setCorrectWordlist}
         correctWordlist={correctWordlist}
         completeWord={word}
         setWord={setWord}
         setError={setError}
-      />
-      <ScoreContainer
+      />}
+      {correctWordlist.length >= 1 && <ScoreContainer
         correctWordlist={correctWordlist}
         submittedScore={submittedScore}
         setSubmittedScore={setSubmittedScore}
-      />
+      />}
     </div>
   );
 }

@@ -8,7 +8,7 @@ export default function Home() {
       <nav className="flex justify-between align-center ">
         <div>
           <h1 className="text-4xl">Word Flow</h1>
-          <p className="text-xs italic">WIP - Proof of concept</p>
+          <p className="text-xs italic">Work in Progress</p>
         </div>
         <Navbuttons />
       </nav>

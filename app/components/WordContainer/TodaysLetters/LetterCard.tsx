@@ -14,10 +14,11 @@ const fetchLetters = async () => {
 };
 
 const checkDates = (first: Date, second: Date) =>
-  first.getFullYear() === second.getFullYear() &&
-  first.getMonth() === second.getMonth() &&
-  first.getDate() === second.getDate();
-
+  !(
+    first.getFullYear() === second.getFullYear() &&
+    first.getMonth() === second.getMonth() &&
+    first.getDate() === second.getDate()
+  );
 
 export default function LetterCard({ setLetterClick, setWord }: LetterClick) {
   // Fetch the letters of the day
@@ -29,7 +30,7 @@ export default function LetterCard({ setLetterClick, setWord }: LetterClick) {
       const currentDailyLetter = JSON.parse(localStorage.getItem("dailyData")!);
 
       const setLettersInStorage = () => {
-        console.log('Resetting daily words')
+        console.log("Resetting daily words");
         const dailyData = JSON.stringify({
           letters: data.letter,
           date: new Date(),
@@ -37,16 +38,20 @@ export default function LetterCard({ setLetterClick, setWord }: LetterClick) {
         localStorage.setItem("dailyData", dailyData);
 
         localStorage.removeItem("wordList");
-        localStorage.removeItem('word-flow-submit')
+        localStorage.removeItem("word-flow-submit");
       };
 
       // If no localStorage -> Create
       if (!currentDailyLetter) {
+        console.log("No letters found - new user");
         setLettersInStorage();
       }
 
       // If the dates do not match, add new letters and delete wordList
-      if (checkDates(new Date(), new Date(currentDailyLetter.date))) {
+      if (
+        currentDailyLetter &&
+        checkDates(new Date(), new Date(currentDailyLetter.date))
+      ) {
         console.log("dates dont match");
         setLettersInStorage();
       }
@@ -62,30 +67,32 @@ export default function LetterCard({ setLetterClick, setWord }: LetterClick) {
 
   return (
     <>
-      <div className=" flex align-center justify-center rounded-md">
+      <div className="flex align-center justify-center text-center rounded-md">
         {!isLoading &&
           data?.letter.map((letter: string) => (
             <button
               onClick={letterClick}
               key={letter}
               data-letter={letter}
-              className="cursor-pointer w-10 h-15 m-2 p-3 text-gray-900 text-2xl text-center bg-white active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out	duration-300"
+              className="m-2 p-2 h-15 w-10 rounded-lg cursor-pointer text-gray-900 text-2xl text-center bg-white active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out	duration-300"
             >
               {letter}
             </button>
           ))}
         {!isLoading && data?.letter && (
-          <FontAwesomeIcon
-            onClick={clickBackspace}
-            className="cursor-pointer w-5 h-10 m-2 p-3 text-gray-900 text-2xl text-center bg-white active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out	duration-300"
-            icon={faDeleteLeft}
-          />
+          <button className="m-2 p-2 h-15 w-10 rounded-lg cursor-pointer text-gray-900 text-center  active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out duration-300">
+            <FontAwesomeIcon
+              onClick={clickBackspace}
+              className="text-center text-white text-3xl"
+              icon={faDeleteLeft}
+            />
+          </button>
         )}
         {isLoading &&
           loadingWords?.map((letter: string) => (
             <div
               key={letter}
-              className="cursor-pointer h-15 w-10 m-2 p-3 text-gray-900 text-2xl text-center bg-slate-300 active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out	duration-300"
+              className="m-2 p-2 h-15 w-10 cursor-pointer text-gray-900 text-2xl text-center active:border-slate-500 focus:outline-none bg-slate-300"
             >
               {letter}
             </div>

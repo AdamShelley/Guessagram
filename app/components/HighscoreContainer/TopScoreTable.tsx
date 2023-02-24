@@ -2,6 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 type Scores = {
   userName: string;
@@ -15,10 +16,20 @@ const fetchScores = async () => {
 };
 
 export default function TopScoreTable() {
+  const [showBestWord, setShowBestWord] = useState(false);
   const { data, isLoading } = useQuery({
     queryFn: fetchScores,
     queryKey: ["get-scores"],
   });
+
+  useEffect(() => {
+    const submitted = JSON.parse(localStorage.getItem("word-flow-submit")!);
+    if (!submitted) {
+      setShowBestWord(false);
+    } else {
+      setShowBestWord(true);
+    }
+  }, []);
 
   return (
     <tbody>
@@ -36,7 +47,7 @@ export default function TopScoreTable() {
               {top.userName}
             </td>
             <td className="text-center p-2 border border-slate-600">
-              {top.highestScore}
+              {showBestWord ? top.highestScore : "- - - - - -"}
             </td>
           </tr>
         ))}
