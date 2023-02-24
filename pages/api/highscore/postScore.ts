@@ -19,7 +19,7 @@ export default async function handler(
         data: {
           userName,
           score,
-          highestScore: highestScoreWord.word,
+          highestScore: `${highestScoreWord.word} (${highestScoreWord.score})`,
         },
       });
 

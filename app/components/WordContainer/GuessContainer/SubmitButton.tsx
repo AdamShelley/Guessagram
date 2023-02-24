@@ -59,7 +59,7 @@ export default function SubmitButton({
 
     setError("");
     setWord("");
-    setTries((prev) => prev++);
+    setTries((prev) => prev+1);
     toast("Word Added", {
       icon: "👏",
       style: {

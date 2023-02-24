@@ -7,7 +7,8 @@ import { toast } from "react-hot-toast";
 
 type CorrectWordProp = {
   correctWordlist: string[];
-  submittedScore: boolean
+  submittedScore: boolean;
+  setSubmittedScore: (submitted: boolean) => void;
 };
 
 type ScoreOptions = {
@@ -23,7 +24,11 @@ type FormData = {
   };
 };
 
-export default function ScoreContainer({ correctWordlist, submittedScore }: CorrectWordProp) {
+export default function ScoreContainer({
+  correctWordlist,
+  submittedScore,
+  setSubmittedScore,
+}: CorrectWordProp) {
   const [userName, setUserName] = useState("");
   const [score, setScore] = useState(0);
   const queryClient = useQueryClient();
@@ -42,7 +47,6 @@ export default function ScoreContainer({ correctWordlist, submittedScore }: Corr
         console.log(data);
         queryClient.invalidateQueries(["get-scores"]);
       },
-      
     }
   );
 
@@ -130,6 +134,8 @@ export default function ScoreContainer({ correctWordlist, submittedScore }: Corr
     toast.success("Your Score has been submitted - did you make the top 10?", {
       duration: 5000,
     });
+
+    setSubmittedScore(true);
   };
 
   useEffect(() => {

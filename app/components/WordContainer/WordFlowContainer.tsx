@@ -8,26 +8,24 @@ import ScoreContainer from "./UserSubmit/ScoreContainer";
 
 export default function () {
   const [correctWordlist, setCorrectWordlist] = useState<string[]>([]);
-  const [submittedScore, setSubmittedScore] = useState(false)
+  const [submittedScore, setSubmittedScore] = useState(false);
   const [letterClicked, setLetterClick] = useState<string>("");
   const [word, setWord] = useState<string>("");
   const [error, setError] = useState<string>("");
 
-
-
-  useEffect(()=>{
-    const wordsAlreadySubmitted = JSON.parse(localStorage.getItem('wordList')!);
-    if (wordsAlreadySubmitted){
+  useEffect(() => {
+    const wordsAlreadySubmitted = JSON.parse(localStorage.getItem("wordList")!);
+    if (wordsAlreadySubmitted) {
       setCorrectWordlist(wordsAlreadySubmitted);
     }
 
-    const submittedScoreStatus = JSON.parse(localStorage.getItem('word-flow-submit')!)
+    const submittedScoreStatus = JSON.parse(
+      localStorage.getItem("word-flow-submit")!
+    );
     if (submittedScoreStatus && submittedScoreStatus.submitted) {
-      setSubmittedScore(true)
+      setSubmittedScore(true);
     }
-   
-
-  },[])
+  }, []);
 
   return (
     <div className="flex flex-col">
@@ -46,7 +44,11 @@ export default function () {
         setWord={setWord}
         setError={setError}
       />
-      <ScoreContainer correctWordlist={correctWordlist} submittedScore={submittedScore}/>
+      <ScoreContainer
+        correctWordlist={correctWordlist}
+        submittedScore={submittedScore}
+        setSubmittedScore={setSubmittedScore}
+      />
     </div>
   );
 }

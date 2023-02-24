@@ -14,11 +14,10 @@ const fetchLetters = async () => {
 };
 
 const checkDates = (first: Date, second: Date) =>
-  !(
-    first.getFullYear() === second.getFullYear() &&
-    first.getMonth() === second.getMonth() &&
-    first.getDate() === second.getDate()
-  );
+  first.getFullYear() === second.getFullYear() &&
+  first.getMonth() === second.getMonth() &&
+  first.getDate() === second.getDate();
+
 
 export default function LetterCard({ setLetterClick, setWord }: LetterClick) {
   // Fetch the letters of the day
@@ -30,12 +29,15 @@ export default function LetterCard({ setLetterClick, setWord }: LetterClick) {
       const currentDailyLetter = JSON.parse(localStorage.getItem("dailyData")!);
 
       const setLettersInStorage = () => {
+        console.log('Resetting daily words')
         const dailyData = JSON.stringify({
           letters: data.letter,
           date: new Date(),
         });
         localStorage.setItem("dailyData", dailyData);
+
         localStorage.removeItem("wordList");
+        localStorage.removeItem('word-flow-submit')
       };
 
       // If no localStorage -> Create
@@ -45,6 +47,7 @@ export default function LetterCard({ setLetterClick, setWord }: LetterClick) {
 
       // If the dates do not match, add new letters and delete wordList
       if (checkDates(new Date(), new Date(currentDailyLetter.date))) {
+        console.log("dates dont match");
         setLettersInStorage();
       }
     },
