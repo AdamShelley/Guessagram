@@ -47,7 +47,7 @@ export default function TopScoreTable() {
               {top.userName}
             </td>
             <td className="text-center p-2 border border-slate-600">
-              {showBestWord ? top.highestScore : "- - - - - -"}
+              {showBestWord ? top.highestScore.toUpperCase() : "- - - - - -"}
             </td>
           </tr>
         ))}

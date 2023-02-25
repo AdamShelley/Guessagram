@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import Rules from "../Rules/Rules";
+import Stats from "./Stats";
 
 export default function Navbuttons() {
   const [showRules, setShowRules] = useState(false);
+  const [showStats, setShowStats] = useState(false);
+
   return (
     <>
       <ul className="flex align-center justify-center text-center">
@@ -17,12 +20,16 @@ export default function Navbuttons() {
           </button>
         </li>
         <li>
-          <button onClick={() => {}} className="w-12 h-8 bg-slate-700 m-1 rounded-md">
+          <button
+            onClick={() => setShowStats(true)}
+            className="w-12 h-8 bg-slate-700 m-1 rounded-md"
+          >
             Stats
           </button>
         </li>
       </ul>
       {showRules && <Rules setShowRules={setShowRules} />}
+      {showStats && <Stats setShowStats={setShowStats} />}
     </>
   );
 }

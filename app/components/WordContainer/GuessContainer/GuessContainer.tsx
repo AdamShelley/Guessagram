@@ -11,7 +11,7 @@ type GuessProps = {
   word: string;
   setWord: (letter: any) => void;
   error: string;
-  submittedScore: boolean
+  submittedScore: boolean;
 };
 
 const fetchLetters = async () => {
@@ -25,9 +25,8 @@ export default function GuessContainer({
   word,
   setWord,
   error,
-  submittedScore
+  submittedScore,
 }: GuessProps) {
-  
   if (submittedScore) return <SubmitSuccess />;
 
   const { data } = useQuery({
@@ -40,14 +39,11 @@ export default function GuessContainer({
       setWord((prev: string) => prev + letterClicked);
       setLetterClick("");
     }
-
-    
-
   }, [letterClicked]);
 
   return (
     <>
-      { !submittedScore && (
+      {!submittedScore && (
         <div className="flex flex-col">
           <div className="flex justify-center align-center py-2 mt-5">
             {data && (
@@ -60,8 +56,28 @@ export default function GuessContainer({
                     letters={data?.letter}
                     word={word}
                     setWord={setWord}
-
                   />
+                </div>
+              </div>
+            )}
+            {/* Skeleton */}
+            {!data && (
+              <div className="flex flex-col">
+                <div className="mt-3 bg-slate-800 text-center">
+                  {error && <p className="text-red-400">{error}</p>}
+                </div>
+                <div className="flex align-center justify-center">
+                  <div className="flex flex-col align-center justify-center text-center">
+                    <div className="h-20">
+                      <input
+                        maxLength={6}
+                        className="border-b-2 border-slate-500 bg-transparent text-slate-100 text-5xl w-9/12 h-full text-center"
+                        type="text"
+                        autoComplete="off"
+                        disabled
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             )}

@@ -92,7 +92,7 @@ export default function SubmitButton({
       <button
         type="submit"
         onClick={getWord}
-        disabled={tries >= 10}
+        disabled={tries >= 10 || completeWord.length < 3}
         className="w-4/12 text-sm bg-teal-700 text-white py-2 px-6 rounded disabled:opacity-25 self-center"
       >
         Submit Word
