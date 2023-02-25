@@ -7,7 +7,7 @@ export default function TopScoreContainer() {
   return (
     <div>
       <h2 className="text-2xl my-5 mt-20 ">High Scores</h2>
-      <table className="mb-20 w-full table-auto border-separate border-spacing-1 border-spacing-y-2 border border-slate-500">
+      <table className="mb-20 w-full table-auto border-separate border-spacing-1 border-spacing-y-2 ">
         <thead>
           <tr>
             <th className="p-2 border border-slate-600 font-bold bg-slate-500">

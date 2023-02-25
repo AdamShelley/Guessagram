@@ -9,7 +9,7 @@ type Scores = {
   score: number;
   highestScore: string;
 };
-
+  
 const fetchScores = async () => {
   const response = await axios.get("/api/highscore/getScores");
   return response.data;

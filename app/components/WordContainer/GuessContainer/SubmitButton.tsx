@@ -9,6 +9,7 @@ type WordProps = {
   setError: (error: string) => void;
   correctWordlist: string[];
   setCorrectWordlist: any;
+  
 };
 
 export default function SubmitButton({
@@ -17,6 +18,7 @@ export default function SubmitButton({
   setError,
   correctWordlist,
   setCorrectWordlist,
+  
 }: WordProps) {
   const [tries, setTries] = useState<number>(0);
 

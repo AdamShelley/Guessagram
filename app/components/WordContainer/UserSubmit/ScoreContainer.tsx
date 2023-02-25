@@ -115,6 +115,8 @@ export default function ScoreContainer({
   const submitScore = (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (submittedScore) return toast.error('You have already submitted today, come back tomorrow!')
+
     if (!userName) return;
 
     const amounts = wordListWithScore.map((a) => a.score);

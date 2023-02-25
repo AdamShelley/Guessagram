@@ -92,7 +92,7 @@ export default function LetterCard({ setLetterClick, setWord }: LetterClick) {
           loadingWords?.map((letter: string) => (
             <div
               key={letter}
-              className="m-2 p-2 h-15 w-10 cursor-pointer text-gray-900 text-2xl text-center active:border-slate-500 focus:outline-none bg-slate-300"
+              className="m-2 p-2 h-15 w-10 rounded-lg cursor-pointer text-gray-900 text-2xl text-center active:border-slate-500 focus:outline-none bg-slate-300"
             >
               {letter}
             </div>

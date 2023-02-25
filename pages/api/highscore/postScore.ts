@@ -1,9 +1,6 @@
 import prisma from "../../../prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-if (!process.env.API_KEY) {
-  throw new Error("Please add an api key");
-}
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,8 +9,6 @@ export default async function handler(
   if (req.method === "POST") {
     try {
       const { userName, score, highestScoreWord } = req.body.data;
-
-      console.log(highestScoreWord.word)
 
       const user = await prisma.score.create({
         data: {

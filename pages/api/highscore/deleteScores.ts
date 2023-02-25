@@ -7,7 +7,7 @@ export default async function handler(
 ) {
   if (req.method === "DELETE") {
     try {
-      // Create user
+      // ADD API LOCK
       const deleteAllScores = await prisma.score.deleteMany();
 
       res.status(200).json(deleteAllScores);

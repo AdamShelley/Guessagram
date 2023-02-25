@@ -4,13 +4,11 @@ type LetterProps = {
   letters: string[];
   word: string;
   setWord: (newWord: string) => void;
-
 };
 
 export default function GuessCard({ letters, word, setWord }: LetterProps) {
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     // Check the letter is in the letter string
-
     const latestLetter = e.target.value.charAt(e.target.value.length - 1);
 
     if (latestLetter === "") {
@@ -21,8 +19,6 @@ export default function GuessCard({ letters, word, setWord }: LetterProps) {
       setWord(e.target.value);
     }
   };
-
-  
 
   return (
     <div className="flex flex-col align-center justify-center text-center">
