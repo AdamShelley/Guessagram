@@ -38,13 +38,13 @@ export default function TopScoreTable() {
       {!isLoading &&
         data?.map((top: Scores, index: number) => (
           <tr key={`${top.userName}-${top.score}`}>
-            <td className="text-center p-2 border border-slate-600">
+            <td className="text-center p-2 border border-slate-600  whitespace-nowrap">
               {index + 1}
             </td>
-            <td className="text-center p-2 border border-slate-600">
+            <td className="text-center p-2 border border-slate-600  whitespace-nowrap">
               {top.score}
             </td>
-            <td className="text-center p-2 border border-slate-600">
+            <td className="text-center p-2 border border-slate-600  whitespace-nowrap" >
               {top.userName}
             </td>
             <td className="text-center p-2 border border-slate-600">

@@ -149,12 +149,12 @@ export default function ScoreContainer({
   return (
     <div className="mt-20 bg-slate-800 border-2 border-slate-700 rounded-lg  shadow-lg p-5">
       <h3 className="text-xl">Your Words</h3>
-      <h4 className="mt-3">Score: {score}</h4>
-      <ul className="m-5">
+      <h4 className="mt-1">Score: {score}</h4>
+      <ul className="mt-5 mb-10">
         {correctWordlist &&
           wordListWithScore?.map((word, index) => (
             <li
-              className="text-md m-2 p-2 grid gap-10 grid-cols-3 justify-center align-center text-center"
+              className="text-md m-2 p-2 grid gap-5 grid-cols-3 justify-center align-center text-center"
               key={word.word}
             >
               <p>{index + 1}</p>
@@ -165,21 +165,21 @@ export default function ScoreContainer({
       </ul>
       {wordListWithScore.length >= 1 && !submittedScore && (
         <div className="border-dashed border-t-2 border-slate-700">
-          <h3 className="text-xl mt-10">Submit your daily result</h3>
-          <form onSubmit={submitScore} className="flex flex-col">
-            <label htmlFor="name" className="mt-5">
-              Add a name
+          <h3 className="text-xl mt-10 m-auto align-center text-center">Submit your daily result</h3>
+          <form onSubmit={submitScore} className="flex flex-col align-center justify-center ">
+            <label htmlFor="name" className="mt-5 text-sm m-auto">
+              Add your nickname
             </label>
             <input
-              className="text-gray-900 p-2 my-2"
+              className="text-gray-900 p-2 my-2 mt-3 rounded-md bg-slate-300 w-9/12 align-center m-auto"
               type="text"
               name="name"
               onChange={(e) => setUserName(e.target.value)}
             />
-            <p className="mt-1">Score: {score}</p>
+            {/* <p className="mt-1">Score: {score}</p> */}
             <button
               id="submit"
-              className="text-sm bg-teal-900 text-white py-2 px-6 rounded disabled:opacity-25 self-center"
+              className="mt-3 text-sm bg-teal-900 text-white py-2 px-6 rounded disabled:opacity-25 self-center"
             >
               Submit
             </button>
