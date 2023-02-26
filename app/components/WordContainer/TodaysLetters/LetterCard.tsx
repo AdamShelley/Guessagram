@@ -30,6 +30,7 @@ export default function LetterCard({
   const { data, isLoading } = useQuery({
     queryFn: fetchLetters,
     queryKey: ["get-letters"],
+    
     onSuccess: (data) => {
       const currentDailyLetter = JSON.parse(localStorage.getItem("dailyData")!);
 
@@ -78,7 +79,7 @@ export default function LetterCard({
               onClick={letterClick}
               key={letter}
               data-letter={letter}
-              disabled={!submittedScore}
+              
               className="m-2 p-2 h-15 w-10 rounded-lg cursor-pointer text-gray-900 text-2xl text-center bg-white active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out	duration-300"
             >
               {letter}
@@ -106,8 +107,6 @@ export default function LetterCard({
             </div>
           ))}
       </div>
-
-      {/* {toggle && <Rules setToggle={setToggle} />} */}
     </>
   );
 }
