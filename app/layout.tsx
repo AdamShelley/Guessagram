@@ -1,10 +1,11 @@
-import "@fortawesome/fontawesome-svg-core/styles.css"; 
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "./globals.css";
 import { Roboto } from "@next/font/google";
 import QueryWrapper from "./components/QueryWrapper";
 
-config.autoAddCss = false; 
+
+config.autoAddCss = false;
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -25,7 +26,10 @@ export default function RootLayout({
       */}
       <head />
       <body className={`text-gray-100 ${roboto.className}`}>
-        <QueryWrapper>{children}</QueryWrapper>
+        <QueryWrapper>
+          {children}
+       
+        </QueryWrapper>
       </body>
     </html>
   );

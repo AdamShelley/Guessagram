@@ -43,8 +43,7 @@ export default function ScoreContainer({
           console.log(error);
         }
       },
-      onSuccess: (data) => {
-        console.log(data);
+      onSuccess: (_) => {
         queryClient.invalidateQueries(["get-scores"]);
       },
     }
@@ -52,7 +51,7 @@ export default function ScoreContainer({
 
   // Calculate the individual word score
   const calculateScore = (word: string) => {
-    console.log("Checking " + word);
+
     const scores: ScoreOptions = {
       a: 1,
       b: 3,
@@ -93,7 +92,7 @@ export default function ScoreContainer({
   };
 
   const generateWordListWithScore = () => {
-    console.log("Generating local storage scores");
+    
     return correctWordlist.map((word) => {
       return {
         word,
@@ -104,7 +103,6 @@ export default function ScoreContainer({
 
   // Organise word list
   let wordListWithScore = generateWordListWithScore();
-  console.log(wordListWithScore);
 
   // Calculate total score
   const totalScore = wordListWithScore?.reduce((acc, obj) => {
@@ -147,7 +145,7 @@ export default function ScoreContainer({
 
   // border-dashed border-t-2 border-slate-600 pt-5
   return (
-    <div className="mt-20 bg-slate-800 border-2 border-slate-700 rounded-lg  shadow-lg p-5">
+    <div className="mt-10 bg-slate-800 border border-slate-700 rounded-lg  shadow-lg p-5">
       <h3 className="text-xl">Your Words</h3>
       <h4 className="mt-1">Score: {score}</h4>
       <ul className="mt-5 mb-10">

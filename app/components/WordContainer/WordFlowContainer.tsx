@@ -29,7 +29,7 @@ export default function () {
 
   return (
     <div className="flex flex-col">
-      <WordContainer setLetterClick={setLetterClick} setWord={setWord} />
+      <WordContainer setLetterClick={setLetterClick} setWord={setWord} submittedScore={submittedScore} />
       <GuessContainer
         setLetterClick={setLetterClick}
         letterClicked={letterClicked}

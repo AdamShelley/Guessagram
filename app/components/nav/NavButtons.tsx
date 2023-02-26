@@ -13,7 +13,7 @@ export default function Navbuttons() {
       <ul className="flex align-center justify-center text-center">
         <li>
           <button
-            className="w-8 h-8 bg-slate-700 m-1 rounded-md"
+            className="w-8 h-8 bg-slate-700 m-1 rounded-md text-xs"
             onClick={() => setShowRules(true)}
           >
             i
@@ -22,7 +22,7 @@ export default function Navbuttons() {
         <li>
           <button
             onClick={() => setShowStats(true)}
-            className="w-12 h-8 bg-slate-700 m-1 rounded-md"
+            className="w-12 h-8 bg-slate-700 m-1 rounded-md text-xs"
           >
             Stats
           </button>

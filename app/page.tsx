@@ -1,3 +1,4 @@
+import Footer from "./components/Footer";
 import TopScoreContainer from "./components/HighscoreContainer/TopScoreContainer";
 import Navbuttons from "./components/nav/NavButtons";
 import WordFlowContainer from "./components/WordContainer/WordFlowContainer";
@@ -14,6 +15,7 @@ export default function Home() {
       </nav>
       <WordFlowContainer />
       <TopScoreContainer />
+      <Footer />
     </main>
   );
 }

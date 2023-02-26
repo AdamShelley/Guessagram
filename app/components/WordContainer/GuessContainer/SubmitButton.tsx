@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 type WordProps = {
@@ -21,6 +21,8 @@ export default function SubmitButton({
   
 }: WordProps) {
   const [tries, setTries] = useState<number>(0);
+
+
 
   const getWord = async () => {
     if (completeWord === "") {
@@ -86,6 +88,13 @@ export default function SubmitButton({
     const newList = [newWord, ...currentList];
     localStorage.setItem("wordList", JSON.stringify(newList));
   };
+
+
+  
+  // Add this list to tries, do not allow same words to be submitted  
+  useEffect(() => {
+    setTries(correctWordlist.length);    
+  },[correctWordlist])
 
   return (
     <div className="flex flex-col align-center justify-center mt-5">
