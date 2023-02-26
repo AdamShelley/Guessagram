@@ -16,6 +16,7 @@ const fetchScores = async () => {
 };
 
 export default function TopScoreTable() {
+ 
   const [showBestWord, setShowBestWord] = useState(false);
   const { data, isLoading } = useQuery({
     queryFn: fetchScores,
@@ -29,7 +30,7 @@ export default function TopScoreTable() {
     } else {
       setShowBestWord(true);
     }
-  }, []);
+  }, [data]);
 
   return (
     <tbody>

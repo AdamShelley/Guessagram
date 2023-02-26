@@ -5,8 +5,8 @@ export default function TopScoreContainer() {
   // Move loading into a table results component to render the skeleton fast?
 
   return (
-    <div>
-      <h2 className="text-2xl my-5 mt-20 ">High Scores</h2>
+    <div className="bg-slate-800 border-2 border-slate-700 p-5 rounded-lg shadow-lg mt-10">
+      <h2 className="text-xl my-5 mt-10">High Scores</h2>
       <table className="mb-20 w-full table-auto border-separate border-spacing-1 border-spacing-y-2 ">
         <thead>
           <tr>

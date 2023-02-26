@@ -145,8 +145,9 @@ export default function ScoreContainer({
     setScore(totalScore);
   }, [correctWordlist]);
 
+  // border-dashed border-t-2 border-slate-600 pt-5
   return (
-    <div className="mt-20">
+    <div className="mt-20 bg-slate-800 border-2 border-slate-700 rounded-lg  shadow-lg p-5">
       <h3 className="text-xl">Your Words</h3>
       <h4 className="mt-3">Score: {score}</h4>
       <ul className="m-5">
@@ -163,8 +164,8 @@ export default function ScoreContainer({
           ))}
       </ul>
       {wordListWithScore.length >= 1 && !submittedScore && (
-        <>
-          <h3 className="text-xl mt-20">Submit your daily result</h3>
+        <div className="border-dashed border-t-2 border-slate-700">
+          <h3 className="text-xl mt-10">Submit your daily result</h3>
           <form onSubmit={submitScore} className="flex flex-col">
             <label htmlFor="name" className="mt-5">
               Add a name
@@ -183,7 +184,7 @@ export default function ScoreContainer({
               Submit
             </button>
           </form>
-        </>
+        </div>
       )}
       
     </div>
