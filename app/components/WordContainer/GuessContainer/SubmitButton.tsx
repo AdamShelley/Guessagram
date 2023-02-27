@@ -9,7 +9,6 @@ type WordProps = {
   setError: (error: string) => void;
   correctWordlist: string[];
   setCorrectWordlist: any;
-  
 };
 
 export default function SubmitButton({
@@ -18,11 +17,8 @@ export default function SubmitButton({
   setError,
   correctWordlist,
   setCorrectWordlist,
-  
 }: WordProps) {
   const [tries, setTries] = useState<number>(0);
-
-
 
   const getWord = async () => {
     if (completeWord === "") {
@@ -38,6 +34,12 @@ export default function SubmitButton({
     if (completeWord.length < 3) {
       toast.error("Words need to be 3 or more characters long.");
       return;
+    }
+
+    console.log(correctWordlist)
+
+    if (correctWordlist.includes(completeWord)) {
+      return setError("Already added that word!");
     }
 
     const res = await fetch(
@@ -63,7 +65,7 @@ export default function SubmitButton({
 
     setError("");
     setWord("");
-    setTries((prev) => prev+1);
+    setTries((prev) => prev + 1);
     toast("Word Added", {
       icon: "👏",
       style: {
@@ -89,12 +91,11 @@ export default function SubmitButton({
     localStorage.setItem("wordList", JSON.stringify(newList));
   };
 
-
-  
-  // Add this list to tries, do not allow same words to be submitted  
+  // Add this list to tries, do not allow same words to be submitted
   useEffect(() => {
-    setTries(correctWordlist.length);    
-  },[correctWordlist])
+    setTries(correctWordlist.length);
+    // Set complete word list here?
+  }, [correctWordlist]);
 
   return (
     <div className="flex flex-col align-center justify-center mt-5">
@@ -102,11 +103,11 @@ export default function SubmitButton({
         type="submit"
         onClick={getWord}
         disabled={tries >= 10 || completeWord.length < 3}
-        className="w-4/12 text-sm bg-teal-700 text-white py-2 px-6 rounded disabled:opacity-25 self-center"
+        className="w-8/12 text-sm bg-teal-700 text-white py-2 px-5 rounded disabled:opacity-25 self-center"
       >
         Submit Word
       </button>
-      <div className={`text-center mt-5 ${tries === 5 ? "text-green-500" : ""}`}>
+      <div className={`text-center mt-5 ${tries >= 5 ? "text-green-500" : ""}`}>
         {`${tries}`}/10 words
       </div>
     </div>

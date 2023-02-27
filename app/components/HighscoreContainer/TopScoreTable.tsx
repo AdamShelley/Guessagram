@@ -42,7 +42,7 @@ export default function TopScoreTable() {
               {index + 1}
             </td>
             <td className="text-center p-2 border border-slate-600  whitespace-nowrap">
-              {top.score}
+              {showBestWord ? top.score: '?'}
             </td>
             <td className="text-center p-2 border border-slate-600  whitespace-nowrap" >
               {top.userName}

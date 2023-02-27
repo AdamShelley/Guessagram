@@ -16,6 +16,7 @@ export default function () {
   useEffect(() => {
     const wordsAlreadySubmitted = JSON.parse(localStorage.getItem("wordList")!);
     if (wordsAlreadySubmitted) {
+      
       setCorrectWordlist(wordsAlreadySubmitted);
     }
 
@@ -29,13 +30,18 @@ export default function () {
 
   return (
     <div className="flex flex-col">
-      <WordContainer setLetterClick={setLetterClick} setWord={setWord} submittedScore={submittedScore} />
       <GuessContainer
         setLetterClick={setLetterClick}
         letterClicked={letterClicked}
         word={word}
         setWord={setWord}
         error={error}
+        submittedScore={submittedScore}
+      />
+
+      <WordContainer
+        setLetterClick={setLetterClick}
+        setWord={setWord}
         submittedScore={submittedScore}
       />
       {!submittedScore && (
@@ -47,6 +53,7 @@ export default function () {
           setError={setError}
         />
       )}
+
       {correctWordlist.length >= 1 && (
         <ScoreContainer
           correctWordlist={correctWordlist}
