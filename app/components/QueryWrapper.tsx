@@ -14,7 +14,13 @@ const QueryWrapper = ({ children }: Props) => {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
-      <Toaster position="bottom-center" />
+      <Toaster position="bottom-center" toastOptions={{
+         style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }}/>
     </QueryClientProvider>
   );
 };

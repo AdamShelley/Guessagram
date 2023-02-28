@@ -16,7 +16,6 @@ export default function () {
   useEffect(() => {
     const wordsAlreadySubmitted = JSON.parse(localStorage.getItem("wordList")!);
     if (wordsAlreadySubmitted) {
-      
       setCorrectWordlist(wordsAlreadySubmitted);
     }
 
@@ -35,7 +34,6 @@ export default function () {
         letterClicked={letterClicked}
         word={word}
         setWord={setWord}
-        error={error}
         submittedScore={submittedScore}
       />
 
@@ -44,6 +42,13 @@ export default function () {
         setWord={setWord}
         submittedScore={submittedScore}
       />
+
+      {error && (
+        <div className="mt-3 bg-slate-800 text-center">
+          {error && <p className="text-red-400">{error}</p>}
+        </div>
+      )}
+
       {!submittedScore && (
         <SubmitButton
           setCorrectWordlist={setCorrectWordlist}

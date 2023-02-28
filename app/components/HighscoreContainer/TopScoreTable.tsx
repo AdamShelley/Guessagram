@@ -9,15 +9,16 @@ type Scores = {
   score: number;
   highestScore: string;
 };
-  
+
 const fetchScores = async () => {
   const response = await axios.get("/api/highscore/getScores");
   return response.data;
 };
 
 export default function TopScoreTable() {
- 
   const [showBestWord, setShowBestWord] = useState(false);
+  const [userName, setUserName] = useState<string>("");
+
   const { data, isLoading } = useQuery({
     queryFn: fetchScores,
     queryKey: ["get-scores"],
@@ -29,6 +30,7 @@ export default function TopScoreTable() {
       setShowBestWord(false);
     } else {
       setShowBestWord(true);
+      setUserName(submitted?.userName);
     }
   }, [data]);
 
@@ -37,14 +39,19 @@ export default function TopScoreTable() {
       {/* Make a comp here? */}
       {!isLoading &&
         data?.map((top: Scores, index: number) => (
-          <tr key={`${top.userName}-${top.score}`}>
+          <tr
+            key={`${top.userName}-${top.score}`}
+            className={`${
+              top.userName === userName ? "border-2 border-red-900" : ""
+            }`}
+          >
             <td className="text-center p-2 border border-slate-600  whitespace-nowrap">
               {index + 1}
             </td>
             <td className="text-center p-2 border border-slate-600  whitespace-nowrap">
-              {showBestWord ? top.score: '?'}
+              {showBestWord ? top.score : "?"}
             </td>
-            <td className="text-center p-2 border border-slate-600  whitespace-nowrap" >
+            <td className="text-center p-2 border border-slate-600  whitespace-nowrap">
               {top.userName}
             </td>
             <td className="text-center p-2 border border-slate-600">

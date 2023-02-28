@@ -51,7 +51,6 @@ export default function ScoreContainer({
 
   // Calculate the individual word score
   const calculateScore = (word: string) => {
-
     const scores: ScoreOptions = {
       a: 1,
       b: 3,
@@ -92,7 +91,6 @@ export default function ScoreContainer({
   };
 
   const generateWordListWithScore = () => {
-    
     return correctWordlist.map((word) => {
       return {
         word,
@@ -113,7 +111,10 @@ export default function ScoreContainer({
   const submitScore = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (submittedScore) return toast.error('You have already submitted today, come back tomorrow!')
+    if (submittedScore)
+      return toast.error(
+        "You have already submitted today, come back tomorrow!"
+      );
 
     if (!userName) return;
 
@@ -128,7 +129,7 @@ export default function ScoreContainer({
     // Add localstorage to only show scores
     localStorage.setItem(
       "word-flow-submit",
-      JSON.stringify({ submitted: true })
+      JSON.stringify({ submitted: true, userName })
     );
 
     toast.success("Your Score has been submitted - did you make the top 10?", {
@@ -163,8 +164,13 @@ export default function ScoreContainer({
       </ul>
       {wordListWithScore.length >= 1 && !submittedScore && (
         <div className="border-dashed border-t-2 border-slate-700">
-          <h3 className="text-xl mt-10 m-auto align-center text-center">Submit your daily result</h3>
-          <form onSubmit={submitScore} className="flex flex-col align-center justify-center ">
+          <h3 className="text-xl mt-10 m-auto align-center text-center">
+            Submit your daily result
+          </h3>
+          <form
+            onSubmit={submitScore}
+            className="flex flex-col align-center justify-center "
+          >
             <label htmlFor="name" className="mt-5 text-sm m-auto">
               Add your nickname
             </label>
@@ -174,7 +180,7 @@ export default function ScoreContainer({
               name="name"
               onChange={(e) => setUserName(e.target.value)}
             />
-            {/* <p className="mt-1">Score: {score}</p> */}
+
             <button
               id="submit"
               className="mt-3 text-sm bg-teal-900 text-white py-2 px-6 rounded disabled:opacity-25 self-center"
@@ -184,7 +190,6 @@ export default function ScoreContainer({
           </form>
         </div>
       )}
-      
     </div>
   );
 }

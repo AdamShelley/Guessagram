@@ -10,7 +10,6 @@ type GuessProps = {
   setLetterClick: (letter: string) => void;
   word: string;
   setWord: (letter: any) => void;
-  error: string;
   submittedScore: boolean;
 };
 
@@ -24,7 +23,7 @@ export default function GuessContainer({
   setLetterClick,
   word,
   setWord,
-  error,
+
   submittedScore,
 }: GuessProps) {
   if (submittedScore) return <SubmitSuccess />;
@@ -44,13 +43,10 @@ export default function GuessContainer({
   return (
     <>
       {!submittedScore && (
-        <div className="flex flex-col">
+        <div className="mt-10 flex flex-col">
           <div className="flex justify-center align-center py-2 mt-5">
             {data && (
               <div className="flex flex-col">
-                <div className="mt-3 bg-slate-800 text-center">
-                  {error && <p className="text-red-400">{error}</p>}
-                </div>
                 <div className="flex align-center justify-center">
                   <GuessCard
                     letters={data?.letter}
@@ -63,9 +59,6 @@ export default function GuessContainer({
             {/* Skeleton */}
             {!data && (
               <div className="flex flex-col">
-                <div className="mt-3 bg-slate-800 text-center">
-                  {error && <p className="text-red-400">{error}</p>}
-                </div>
                 <div className="flex align-center justify-center">
                   <div className="flex flex-col align-center justify-center text-center">
                     <div className="h-15">

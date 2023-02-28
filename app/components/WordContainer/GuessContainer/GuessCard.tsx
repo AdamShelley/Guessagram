@@ -23,9 +23,10 @@ export default function GuessCard({ letters, word, setWord }: LetterProps) {
   return (
     <div className="flex flex-col align-center justify-center text-center">
       <div className="h-15">
+      {/* border-b border-slate-600 */}
         <input
           maxLength={6}
-          className="border-b border-slate-600 bg-transparent text-slate-100 text-5xl w-9/12 h-full text-center"
+          className="p-3 border-b border-slate-600 bg-transparent text-slate-100 text-5xl w-9/12 h-full text-center"
           type="text"
           value={word}
           onChange={handleInput}
