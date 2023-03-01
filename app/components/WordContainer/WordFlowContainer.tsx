@@ -7,6 +7,7 @@ import WordContainer from "./TodaysLetters/WordContainer";
 import ScoreContainer from "./UserSubmit/ScoreContainer";
 
 export default function () {
+  const [dailyLetters, setDailyLetters] = useState<string[]>([]);
   const [correctWordlist, setCorrectWordlist] = useState<string[]>([]);
   const [submittedScore, setSubmittedScore] = useState(false);
   const [letterClicked, setLetterClick] = useState<string>("");
@@ -22,9 +23,17 @@ export default function () {
     const submittedScoreStatus = JSON.parse(
       localStorage.getItem("word-flow-submit")!
     );
+
     if (submittedScoreStatus && submittedScoreStatus.submitted) {
       setSubmittedScore(true);
     }
+
+    const todaysLetters = JSON.parse(localStorage.getItem('dailyData')!)
+
+    if (todaysLetters) {
+      setDailyLetters(todaysLetters.letters)
+    }
+
   }, []);
 
   return (
@@ -64,6 +73,7 @@ export default function () {
           correctWordlist={correctWordlist}
           submittedScore={submittedScore}
           setSubmittedScore={setSubmittedScore}
+          dailyLetters={dailyLetters}
         />
       )}
     </div>

@@ -58,18 +58,10 @@ export default function GuessContainer({
             )}
             {/* Skeleton */}
             {!data && (
-              <div className="flex flex-col">
-                <div className="flex align-center justify-center">
+              <div className="mt-10 flex flex-col">
+                <div className="flex align-center justify-center py-2 mt-5">
                   <div className="flex flex-col align-center justify-center text-center">
-                    <div className="h-15">
-                      <input
-                        maxLength={6}
-                        className="border-b border-slate-600 bg-transparent text-slate-100 text-5xl w-9/12 h-full text-center"
-                        type="text"
-                        autoComplete="off"
-                        disabled
-                      />
-                    </div>
+                    <div className="h-15 border-b border-slate-600 bg-transparent text-slate-900 text-5xl w-9/12 h-full text-center"></div>
                   </div>
                 </div>
               </div>

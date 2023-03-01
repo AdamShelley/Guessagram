@@ -9,6 +9,7 @@ type CorrectWordProp = {
   correctWordlist: string[];
   submittedScore: boolean;
   setSubmittedScore: (submitted: boolean) => void;
+  dailyLetters: string[];
 };
 
 type ScoreOptions = {
@@ -28,6 +29,7 @@ export default function ScoreContainer({
   correctWordlist,
   submittedScore,
   setSubmittedScore,
+  dailyLetters,
 }: CorrectWordProp) {
   const [userName, setUserName] = useState("");
   const [score, setScore] = useState(0);
@@ -87,6 +89,19 @@ export default function ScoreContainer({
       wordScore += num;
     });
 
+    // Did user use all letters - needs testing
+    if (word.split('').length === 6 ) {
+      word.split('').every((element) => {
+        if (!dailyLetters.includes(element)) {
+          return;
+        }
+      })
+
+      wordScore += 20
+    }
+
+    
+
     return wordScore;
   };
 
@@ -144,7 +159,8 @@ export default function ScoreContainer({
     setScore(totalScore);
   }, [correctWordlist]);
 
-  // border-dashed border-t-2 border-slate-600 pt-5
+  
+
   return (
     <div className="mt-10 bg-slate-800 border border-slate-700 rounded-lg  shadow-lg p-5">
       <h3 className="text-xl">Your Words</h3>
