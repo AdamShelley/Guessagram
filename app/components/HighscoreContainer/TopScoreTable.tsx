@@ -34,24 +34,28 @@ export default function TopScoreTable() {
     }
   }, [data]);
 
+  console.log(userName);
+
   return (
     <tbody>
       {/* Make a comp here? */}
       {!isLoading &&
         data?.map((top: Scores, index: number) => (
-          <tr
-            key={`${top.userName}-${top.score}`}
-            className={`${
-              top.userName === userName ? "border-2 border-red-900" : ""
-            }`}
-          >
+          <tr key={`${top.userName}-${top.score}`}>
             <td className="text-center p-2 border border-slate-600  whitespace-nowrap">
               {index + 1}
             </td>
             <td className="text-center p-2 border border-slate-600  whitespace-nowrap">
               {showBestWord ? top.score : "?"}
             </td>
-            <td className="text-center p-2 border border-slate-600  whitespace-nowrap">
+            <td
+              className={`text-center p-2 border border-slate-600  whitespace-nowrap
+            ${
+              top.userName === userName
+                ? "border-dashed border-2 border-slate-400"
+                : ""
+            }`}
+            >
               {top.userName}
             </td>
             <td className="text-center p-2 border border-slate-600">

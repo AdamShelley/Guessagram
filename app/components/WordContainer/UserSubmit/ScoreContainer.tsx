@@ -165,7 +165,7 @@ export default function ScoreContainer({
     <div className="mt-10 bg-slate-800 border border-slate-700 rounded-lg  shadow-lg p-5">
       <h3 className="text-xl">Your Words</h3>
       <h4 className="mt-1">Score: {score}</h4>
-      <ul className="mt-5 mb-10">
+      <ul className="mt-5 mb-5">
         {correctWordlist &&
           wordListWithScore?.map((word, index) => (
             <li
