@@ -43,7 +43,7 @@ export default function GuessContainer({
   return (
     <>
       {!submittedScore && (
-        <div className="mt-10 flex flex-col">
+        <div className="mt-10 flex flex-col ">
           <div className="flex justify-center align-center py-2 mt-5">
             {data && (
               <div className="flex flex-col">

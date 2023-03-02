@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { toast } from "react-hot-toast";
+import ShareScore from "../../CompletedDay/ShareScore";
 
 type CorrectWordProp = {
   correctWordlist: string[];
@@ -90,17 +91,15 @@ export default function ScoreContainer({
     });
 
     // Did user use all letters - needs testing
-    if (word.split('').length === 6 ) {
-      word.split('').every((element) => {
+    if (word.split("").length === 6) {
+      word.split("").every((element) => {
         if (!dailyLetters.includes(element)) {
           return;
         }
-      })
+      });
 
-      wordScore += 20
+      wordScore += 20;
     }
-
-    
 
     return wordScore;
   };
@@ -159,8 +158,6 @@ export default function ScoreContainer({
     setScore(totalScore);
   }, [correctWordlist]);
 
-  
-
   return (
     <div className="mt-10 bg-slate-800 border border-slate-700 rounded-lg  shadow-lg p-5">
       <h3 className="text-xl">Your Words</h3>
@@ -178,6 +175,15 @@ export default function ScoreContainer({
             </li>
           ))}
       </ul>
+      {submittedScore && (
+        <>
+          <p>Share your score: </p>
+          <ShareScore
+            totalScore={totalScore}
+            correctWordlist={correctWordlist}
+          />
+        </>
+      )}
       {wordListWithScore.length >= 1 && !submittedScore && (
         <div className="border-dashed border-t-2 border-slate-700">
           <h3 className="text-xl mt-10 m-auto align-center text-center">
@@ -191,7 +197,7 @@ export default function ScoreContainer({
               Add your nickname
             </label>
             <input
-              className="text-gray-900 p-2 my-2 mt-3 rounded-md bg-slate-300 w-9/12 align-center m-auto"
+              className="text-gray-900 p-2 my-2 mt-3 rounded-sm bg-slate-100 w-9/12 align-center m-auto lg:w-1/2"
               type="text"
               name="name"
               onChange={(e) => setUserName(e.target.value)}
@@ -199,7 +205,7 @@ export default function ScoreContainer({
 
             <button
               id="submit"
-              className="mt-3 text-sm bg-teal-900 text-white py-2 px-6 rounded disabled:opacity-25 self-center"
+              className="mt-3 text-sm bg-teal-900 text-white py-2 px-6 rounded-sm disabled:opacity-25 self-center lg:w-1/2"
             >
               Submit
             </button>

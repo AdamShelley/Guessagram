@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <div className="p-2">
+    <div className="p-4 fixed bottom-0">
       <h4 className="mt-10 text-xs">
         Created by{"  "}
         <a

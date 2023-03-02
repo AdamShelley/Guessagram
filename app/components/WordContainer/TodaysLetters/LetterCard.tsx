@@ -80,7 +80,7 @@ export default function LetterCard({
               key={letter}
               data-letter={letter}
               
-              className="m-2 p-2 h-15 w-10 rounded-lg cursor-pointer text-gray-900 text-2xl text-center bg-white active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out	duration-300"
+              className="m-2 p-2 h-15 w-10 lg:w-20 lg:h-20 rounded-lg cursor-pointer text-gray-900 text-2xl text-center bg-white active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out	duration-300"
             >
               {letter}
             </button>
@@ -88,11 +88,11 @@ export default function LetterCard({
         {!isLoading && data?.letter && (
           <button
             disabled={!submittedScore}
-            className="m-2 p-2 h-15 w-10 rounded-lg cursor-pointer text-gray-900 text-center  active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out duration-300"
+            className="m-2 p-2 h-15 w-10 lg:w-15 lg:h-15 rounded-lg cursor-pointer text-gray-900 text-center  active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out duration-300"
           >
             <FontAwesomeIcon
               onClick={clickBackspace}
-              className="text-center text-white text-3xl"
+              className="text-center text-white text-3xl lg:text-4xl"
               icon={faDeleteLeft}
             />
           </button>

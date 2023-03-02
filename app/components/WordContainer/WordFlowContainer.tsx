@@ -37,7 +37,7 @@ export default function () {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col lg:w-1/2 place-self-center ">
       <GuessContainer
         setLetterClick={setLetterClick}
         letterClicked={letterClicked}

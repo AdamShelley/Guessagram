@@ -3,7 +3,7 @@ import TopScoreTable from "./TopScoreTable";
 export default function TopScoreContainer() {
   return (
     // border border-slate-700 p-2 rounded-lg shadow-lg
-    <div className="bg-slate-800   mt-10">
+    <div className="mt-10 lg:w-1/2 lg:place-self-center lg:m-auto">
       <h2 className="text-xl mt-5 pl-3">High Scores</h2>
       <table className="mt-5 mb-10 w-full table-auto border-collapse  text-sm">
         <thead>

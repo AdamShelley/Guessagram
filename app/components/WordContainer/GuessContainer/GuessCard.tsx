@@ -26,7 +26,7 @@ export default function GuessCard({ letters, word, setWord }: LetterProps) {
       {/* border-b border-slate-600 */}
         <input
           maxLength={6}
-          className="p-3 border-b border-slate-600 bg-transparent text-slate-100 text-5xl w-9/12 h-full text-center"
+          className="p-3 border-b border-slate-600 bg-transparent text-white text-5xl w-9/12 h-full text-center"
           type="text"
           value={word}
           onChange={handleInput}
