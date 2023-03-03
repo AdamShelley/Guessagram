@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { toast } from "react-hot-toast";
 import ShareScore from "../../CompletedDay/ShareScore";
+import { scores } from "@/app/utils/ScoreOptions";
 
 type CorrectWordProp = {
   correctWordlist: string[];
@@ -13,9 +14,6 @@ type CorrectWordProp = {
   dailyLetters: string[];
 };
 
-type ScoreOptions = {
-  [key: string]: number;
-};
 
 type FormData = {
   userName: string;
@@ -54,34 +52,7 @@ export default function ScoreContainer({
 
   // Calculate the individual word score
   const calculateScore = (word: string) => {
-    const scores: ScoreOptions = {
-      a: 1,
-      b: 3,
-      c: 3,
-      d: 2,
-      e: 1,
-      f: 4,
-      g: 2,
-      h: 4,
-      i: 1,
-      j: 8,
-      k: 5,
-      l: 1,
-      m: 3,
-      n: 1,
-      o: 1,
-      p: 3,
-      q: 10,
-      r: 1,
-      s: 1,
-      t: 1,
-      u: 1,
-      v: 4,
-      w: 2,
-      x: 8,
-      y: 4,
-      z: 10,
-    };
+    
 
     let wordScore: number = 0;
 

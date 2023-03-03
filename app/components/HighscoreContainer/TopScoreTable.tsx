@@ -34,7 +34,6 @@ export default function TopScoreTable() {
     }
   }, [data]);
 
-  console.log(userName);
 
   return (
     <tbody>
