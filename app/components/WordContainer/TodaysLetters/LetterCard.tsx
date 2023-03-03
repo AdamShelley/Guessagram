@@ -89,7 +89,7 @@ export default function LetterCard({
               className="relative m-2 p-2 h-15 w-10 lg:w-20 lg:h-20 rounded-lg cursor-pointer text-gray-900 text-2xl text-center bg-white active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out	duration-300"
             >
               {letter}
-              <span className="absolute  right-1px lg:right-2 lg:top-1 text-xs lg:text-sm">{scores[letter.toLowerCase()]}</span>
+              <span className="absolute pointer-events-none right-1px lg:right-2 lg:top-1 text-xs lg:text-sm">{scores[letter.toLowerCase()]}</span>
             </button>
           ))}
         {!isLoading && data?.letter && (

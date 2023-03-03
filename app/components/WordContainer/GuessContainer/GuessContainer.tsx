@@ -47,21 +47,23 @@ export default function GuessContainer({
           <div className="flex justify-center align-center py-2 mt-5">
             {data && (
               <div className="flex flex-col">
-                <div className="flex align-center justify-center">
+                <div className={`flex align-center justify-center ${word.length === 0 && 'mb-7'}`}>
                   <GuessCard
                     letters={data?.letter}
                     word={word}
                     setWord={setWord}
                   />
                 </div>
+                
+                {word.length > 0 && <p className={`self-center text-sm mt-2`}>{word.length}/6</p>}
               </div>
             )}
             {/* Skeleton */}
             {!data && (
               <div className="mt-10 flex flex-col">
-                <div className="flex align-center justify-center py-2 mt-5">
+                <div className="flex align-center justify-center py-2 mt-5 mb-2">
                   <div className="flex flex-col align-center justify-center text-center">
-                    <div className="h-15 border-b border-slate-600 bg-transparent text-slate-900 text-5xl w-9/12 h-full text-center"></div>
+                    <div className="mb-7 h-15 border-b border-slate-600 bg-transparent text-slate-900 text-5xl w-9/12 h-full text-center"></div>
                   </div>
                 </div>
               </div>

@@ -33,6 +33,7 @@ export default function GuessCard({ letters, word, setWord }: LetterProps) {
           autoComplete="off"
           disabled={true}
         />
+        
       </div>
     </div>
   );

@@ -3,15 +3,10 @@ type ShareTypes = {
   totalScore: number;
 };
 
-
-
 export default function ShareScore({
   correctWordlist,
   totalScore,
 }: ShareTypes) {
-
-  
-
   const message = `Check out my score on *Guesswords*
   %0aMy total score was: ${totalScore} from ${correctWordlist.length} words. 
   %0aMy words were: ${correctWordlist.map(
@@ -20,6 +15,15 @@ export default function ShareScore({
   `;
 
   // U+0031 U+FE0F U+20E3
+  const shareScore = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: 'We sharing this',
+        url: ''
+      })
+    }
+  };
+
 
   return (
     <div className="mt-5">
@@ -31,6 +35,7 @@ export default function ShareScore({
       >
         WhatsApp
       </a>
+      <button onClick={shareScore}>Test button</button>
     </div>
   );
 }
