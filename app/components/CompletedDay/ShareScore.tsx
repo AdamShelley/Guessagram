@@ -18,24 +18,20 @@ export default function ShareScore({
   const shareScore = () => {
     if (navigator.share) {
       navigator.share({
-        title: 'We sharing this',
-        url: ''
-      })
+        title: "We sharing this",
+        text: message,
+      });
     }
   };
 
-
   return (
-    <div className="mt-5">
-      <a
-        href={`whatsapp://send?text=${message}`}
-        data-action="share/whatsapp/share"
-        target="_blank"
-        className="text-sm text-white border border-violet-500 rounded-lg p-1 bg-violet-500 hover:bg-violet-900 cursor-pointer"
+    <div className="mt-5 md:invisible">
+      <button
+        className="md:invisible text-md text-white border border-violet-500 rounded-lg p-3 bg-violet-500 hover:bg-violet-900 cursor-pointer"
+        onClick={shareScore}
       >
-        WhatsApp
-      </a>
-      <button onClick={shareScore}>Test button</button>
+        Share
+      </button>
     </div>
   );
 }
