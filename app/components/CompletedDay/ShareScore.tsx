@@ -7,10 +7,10 @@ export default function ShareScore({
   correctWordlist,
   totalScore,
 }: ShareTypes) {
-  const message = `Check out my score on *Guesswords*
-  %0aMy total score was: ${totalScore} from ${correctWordlist.length} words. 
-  %0aMy words were: ${correctWordlist.map(
-    (word, index) => `%0a ${index + 1}: ${word}`
+  const message = `Check out my score on *Guesswords*\n
+  My total score was: ${totalScore} from ${correctWordlist.length} words.\n
+  My words were: ${correctWordlist.map(
+    (word, index) => `${index + 1}: ${word}\n`
   )}
   `;
 
