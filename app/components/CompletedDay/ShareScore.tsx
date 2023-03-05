@@ -7,10 +7,10 @@ export default function ShareScore({
   correctWordlist,
   totalScore,
 }: ShareTypes) {
-  const message = `Check out my score on *Guesswords*\n
-  My total score was: ${totalScore} from ${correctWordlist.length} words.\n
-  My words were: ${correctWordlist.map(
-    (word, index) => `${index + 1}: ${word}\n`
+  const message = `Check out my score on *Guesswords*\nMy total score was: ${totalScore} from ${
+    correctWordlist.length
+  } words.\nMy words were: ${correctWordlist.map(
+    (word, index) => `\n${index + 1}: ${word}`
   )}
   `;
 
@@ -18,7 +18,7 @@ export default function ShareScore({
   const shareScore = () => {
     if (navigator.share) {
       navigator.share({
-        title: "We sharing this",
+        title: "Sharing your Guesswords score",
         text: message,
       });
     }

@@ -67,7 +67,7 @@ export default function TopScoreTable() {
           <td className="text-center">Loading...</td>
         </tr>
       )}
-      {isLoading && data && (
+      {!isLoading && !data && (
         <tr>
           <td className="text-center">Nobody has submitted their score yet!</td>
         </tr>
