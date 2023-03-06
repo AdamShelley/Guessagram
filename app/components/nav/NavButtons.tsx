@@ -10,19 +10,21 @@ export default function Navbuttons() {
   const [showRules, setShowRules] = useState(false);
   const [showStats, setShowStats] = useState(false);
 
-
   // Get stats localStorage
-  let statisticsLocalStorage = JSON.parse(localStorage.getItem('personal-stats')!)
+  let statisticsLocalStorage;
+  if (typeof window !== "undefined") {
+    statisticsLocalStorage = JSON.parse(
+      localStorage.getItem("personal-stats")!
+    );
 
-  if(!statisticsLocalStorage){
-    statisticsLocalStorage = {
-      daysPlayed: 0,
-      totalWords: 0,
-      totalScore: 0
+    if (!statisticsLocalStorage) {
+      statisticsLocalStorage = {
+        daysPlayed: 0,
+        totalWords: 0,
+        totalScore: 0,
+      };
     }
   }
-
-
 
   return (
     <>
@@ -32,11 +34,11 @@ export default function Navbuttons() {
             className="w-8 h-8 bg-slate-700 m-1 rounded-md text-xs"
             onClick={() => setShowRules(true)}
           >
-          <FontAwesomeIcon
-            onClick={() => setShowStats(false)}
-            className="text-center text-white text-md ml-auto lg:text-xl"
-            icon={faInfo}
-          />
+            <FontAwesomeIcon
+              onClick={() => setShowStats(false)}
+              className="text-center text-white text-md ml-auto lg:text-xl"
+              icon={faInfo}
+            />
           </button>
         </li>
         <li>
@@ -49,7 +51,12 @@ export default function Navbuttons() {
         </li>
       </ul>
       {showRules && <Rules setShowRules={setShowRules} />}
-      {showStats && <Stats setShowStats={setShowStats} statisticsLocalStorage={statisticsLocalStorage} />}
+      {showStats && (
+        <Stats
+          setShowStats={setShowStats}
+          statisticsLocalStorage={statisticsLocalStorage}
+        />
+      )}
     </>
   );
 }
