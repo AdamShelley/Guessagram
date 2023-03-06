@@ -1,5 +1,7 @@
 "use client";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Rules from "../Rules/Rules";
 import Stats from "./Stats";
@@ -7,6 +9,20 @@ import Stats from "./Stats";
 export default function Navbuttons() {
   const [showRules, setShowRules] = useState(false);
   const [showStats, setShowStats] = useState(false);
+
+
+  // Get stats localStorage
+  let statisticsLocalStorage = JSON.parse(localStorage.getItem('personal-stats')!)
+
+  if(!statisticsLocalStorage){
+    statisticsLocalStorage = {
+      daysPlayed: 0,
+      totalWords: 0,
+      totalScore: 0
+    }
+  }
+
+
 
   return (
     <>
@@ -16,7 +32,11 @@ export default function Navbuttons() {
             className="w-8 h-8 bg-slate-700 m-1 rounded-md text-xs"
             onClick={() => setShowRules(true)}
           >
-            i
+          <FontAwesomeIcon
+            onClick={() => setShowStats(false)}
+            className="text-center text-white text-md ml-auto lg:text-xl"
+            icon={faInfo}
+          />
           </button>
         </li>
         <li>
@@ -29,7 +49,7 @@ export default function Navbuttons() {
         </li>
       </ul>
       {showRules && <Rules setShowRules={setShowRules} />}
-      {showStats && <Stats setShowStats={setShowStats} />}
+      {showStats && <Stats setShowStats={setShowStats} statisticsLocalStorage={statisticsLocalStorage} />}
     </>
   );
 }

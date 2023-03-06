@@ -14,7 +14,6 @@ type CorrectWordProp = {
   dailyLetters: string[];
 };
 
-
 type FormData = {
   userName: string;
   score: number;
@@ -52,8 +51,6 @@ export default function ScoreContainer({
 
   // Calculate the individual word score
   const calculateScore = (word: string) => {
-    
-
     let wordScore: number = 0;
 
     word.split("").forEach((letter: string) => {
@@ -116,6 +113,29 @@ export default function ScoreContainer({
       "word-flow-submit",
       JSON.stringify({ submitted: true, userName })
     );
+
+    // Handle the localstorage for stats
+    const storedStats = JSON.parse(localStorage.getItem("personal-stats")!);
+
+    if (!storedStats) {
+      localStorage.setItem(
+        "personal-stats",
+        JSON.stringify({
+          daysPlayed: 1,
+          totalWords: correctWordlist.length,
+          totalScore: score,
+        })
+      );
+    } else {
+      localStorage.setItem(
+        "personal-stats",
+        JSON.stringify({
+          daysPlayed: storedStats.daysPlayed + 1,
+          totalWords: storedStats.totalWords + correctWordlist.length,
+          totalScore: storedStats.totalScore + score,
+        })
+      );
+    }
 
     toast.success("Your Score has been submitted - did you make the top 10?", {
       duration: 5000,

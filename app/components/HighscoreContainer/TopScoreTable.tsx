@@ -34,7 +34,6 @@ export default function TopScoreTable() {
     }
   }, [data]);
 
-
   return (
     <tbody>
       {/* Make a comp here? */}
@@ -67,9 +66,11 @@ export default function TopScoreTable() {
           <td className="text-center">Loading...</td>
         </tr>
       )}
-      {!isLoading && !data && (
-        <tr>
-          <td className="text-center">Nobody has submitted their score yet!</td>
+      {!isLoading && data.length < 1  && (
+        <tr className="text-center">
+          <td className="text-center" colSpan={4}>
+            <p className="mt-5">Nobody has submitted their score yet!</p>
+          </td>
         </tr>
       )}
     </tbody>
