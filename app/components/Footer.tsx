@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <div className="py-4 absolute bottom-0">
+    <footer className="py-4 inset-x-0 bottom-0">
       <h4 className="mt-10 text-xs">
         Created by{"  "}
         <a
@@ -12,6 +12,9 @@ export default function Footer() {
            Adam Shelley
         </a>
       </h4>
-    </div>
+    </footer>
   );
 }
+
+
+
