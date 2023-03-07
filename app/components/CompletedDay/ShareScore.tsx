@@ -9,13 +9,14 @@ export default function ShareScore({
 }: ShareTypes) {
 
 
-  const codePointBase = "31-FE0F-20E3";
+  const codePointBase = [0x31,0xFE0F,0x20E3];
   const emoji = codePointBase
-    .split("-")
-    .map((codePoint) => String.fromCodePoint(`0x${codePoint}`)).join("");
+    .map((codePoint) => {
+      String.fromCodePoint(codePoint)
+    })
 
 
-    
+
 
 
   const message = `Check out my score on *Guesswords*\nMy total score was: ${totalScore} from ${
@@ -34,6 +35,8 @@ export default function ShareScore({
       });
     }
   };
+
+  
 
   return (
     <div className="mt-5 md:invisible">
