@@ -7,10 +7,21 @@ export default function ShareScore({
   correctWordlist,
   totalScore,
 }: ShareTypes) {
+
+
+  const codePointBase = "31-FE0F-20E3";
+  const emoji = codePointBase
+    .split("-")
+    .map((codePoint) => String.fromCodePoint(`0x${codePoint}`)).join("");
+
+
+    
+
+
   const message = `Check out my score on *Guesswords*\nMy total score was: ${totalScore} from ${
     correctWordlist.length
   } words.\nMy words were: ${correctWordlist.map(
-    (word, index) => `\n${index + 1}: ${word}`
+    (word, index) => `\n${emoji}: ${word}`
   )}
   `;
 

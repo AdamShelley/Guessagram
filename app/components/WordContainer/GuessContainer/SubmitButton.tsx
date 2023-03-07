@@ -9,6 +9,7 @@ type WordProps = {
   setError: (error: string) => void;
   correctWordlist: string[];
   setCorrectWordlist: any;
+  setTodaysAttempts: any;
 };
 
 export default function SubmitButton({
@@ -17,6 +18,7 @@ export default function SubmitButton({
   setError,
   correctWordlist,
   setCorrectWordlist,
+  setTodaysAttempts
 }: WordProps) {
   const [tries, setTries] = useState<number>(0);
 
@@ -41,6 +43,8 @@ export default function SubmitButton({
     if (correctWordlist.includes(completeWord)) {
       return setError("Already added that word!");
     }
+
+    setTodaysAttempts((attempts) => attempts + 1)
 
     const res = await fetch(
       `https://api.dictionaryapi.dev/api/v2/entries/en/${completeWord}`

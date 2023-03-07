@@ -18,7 +18,10 @@ export default function Rules({ setShowRules }: ToggleProps) {
           icon={faXmark}
         />
         <h2 className="text-center text-xl text-white">Rules to play</h2>
-
+        <p>
+          Guess 10 words from the set of letters for the day, get the highest
+          score possible with these letters.
+        </p>
         <ul className="text-left text-sm md:text-lg">
           <li>
             <p>1. Only use 6 letters.</p>
@@ -42,8 +45,6 @@ export default function Rules({ setShowRules }: ToggleProps) {
             <p>5. Once you press submit, that is it for the day.</p>
           </li>
         </ul>
-
-
       </div>
     </div>
   );

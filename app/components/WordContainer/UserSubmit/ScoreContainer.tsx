@@ -12,6 +12,7 @@ type CorrectWordProp = {
   submittedScore: boolean;
   setSubmittedScore: (submitted: boolean) => void;
   dailyLetters: string[];
+  todaysAttempts: number
 };
 
 type FormData = {
@@ -21,6 +22,7 @@ type FormData = {
     word: string;
     score: number;
   };
+  
 };
 
 export default function ScoreContainer({
@@ -28,6 +30,7 @@ export default function ScoreContainer({
   submittedScore,
   setSubmittedScore,
   dailyLetters,
+  todaysAttempts
 }: CorrectWordProp) {
   const [userName, setUserName] = useState("");
   const [score, setScore] = useState(0);
@@ -124,6 +127,7 @@ export default function ScoreContainer({
           daysPlayed: 1,
           totalWords: correctWordlist.length,
           totalScore: score,
+          totalGuessAttempts: todaysAttempts
         })
       );
     } else {
@@ -133,6 +137,7 @@ export default function ScoreContainer({
           daysPlayed: storedStats.daysPlayed + 1,
           totalWords: storedStats.totalWords + correctWordlist.length,
           totalScore: storedStats.totalScore + score,
+          totalGuessAttempts: storedStats.totalGuessAttempts + todaysAttempts
         })
       );
     }
