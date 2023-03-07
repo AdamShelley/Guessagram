@@ -13,7 +13,7 @@ export default function ShareScore({
   const emoji = codePointBase
     .map((codePoint) => {
       String.fromCodePoint(codePoint)
-    })
+    }).join('')
 
 
 
