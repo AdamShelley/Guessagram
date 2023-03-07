@@ -11,20 +11,14 @@ export default function Navbuttons() {
   const [showStats, setShowStats] = useState(false);
 
   // Get stats localStorage
-  let statisticsLocalStorage;
+  let statisticsLocalStorage = null;
   if (typeof window !== "undefined") {
     statisticsLocalStorage = JSON.parse(
       localStorage.getItem("personal-stats")!
     );
-
-    if (!statisticsLocalStorage) {
-      statisticsLocalStorage = {
-        daysPlayed: 0,
-        totalWords: 0,
-        totalScore: 0,
-      };
-    }
   }
+
+  
 
   return (
     <>
