@@ -44,7 +44,7 @@ export default function SubmitButton({
       return setError("Already added that word!");
     }
 
-    setTodaysAttempts((attempts) => attempts + 1)
+    setTodaysAttempts((attempts: any) => attempts + 1)
 
     const res = await fetch(
       `https://api.dictionaryapi.dev/api/v2/entries/en/${completeWord}`
