@@ -17,12 +17,12 @@ export default function Rules({ setShowRules }: ToggleProps) {
           className="text-center text-white text-xl ml-auto lg:text-xl cursor-pointer"
           icon={faXmark}
         />
-        <h2 className="text-center text-xl text-white">Rules to play</h2>
-        <p>
+        <h2 className="text-left text-xl text-white">Rules to play</h2>
+        <p className="text-sm">
           Guess 10 words from the set of letters for the day, get the highest
           score possible with these letters.
         </p>
-        <ul className="text-left text-sm md:text-lg">
+        <ul className="text-left mt-5 text-sm md:text-lg">
           <li>
             <p>1. Only use 6 letters.</p>
           </li>

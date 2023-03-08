@@ -89,13 +89,13 @@ export default function LetterCard({
               className="relative m-1 p-2 h-15 w-12 lg:w-20 lg:h-20 rounded-lg cursor-pointer text-gray-900 text-2xl text-center bg-white active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out	duration-300"
             >
               {letter}
-              <span className="absolute pointer-events-none right-1px lg:right lg:top-0 text-xs lg:text-sm">{scores[letter.toLowerCase()]}</span>
+              <span className="absolute pointer-events-none right-1px lg:right lg:top-4 text-xs lg:text-sm">{scores[letter.toLowerCase()]}</span>
             </button>
           ))}
         {!isLoading && data?.letter && (
           <button
             disabled={!submittedScore}
-            className="m-2 p-2 h-15 w-10 lg:w-15 lg:h-15 rounded-lg cursor-pointer text-gray-900 text-center  active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out duration-300"
+            className="m-2 p-2 h-15 w-12 lg:w-15 lg:h-15 rounded-lg cursor-pointer text-gray-900 text-center  active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out duration-300"
           >
             <FontAwesomeIcon
               onClick={clickBackspace}
