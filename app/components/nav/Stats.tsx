@@ -66,7 +66,7 @@ export default function Stats({
           <li className="mt-4 text-md">
             Total correct words:{" "}
             <span className=" text-white text-xl ml-5">
-              {totalWords}/{totalGuessAttempts} ({(totalWords/totalGuessAttempts) * 100}%)
+              {totalWords}/{totalGuessAttempts} ({((totalWords/totalGuessAttempts) * 100).toFixed(2)}%)
             </span>
           </li>
           <li className="mt-4 text-md">
