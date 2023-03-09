@@ -53,27 +53,22 @@ export default function Stats({
         <ul className="text-left text-sm md:text-lg p-4">
           <li className="mt-4 text-md">
             Days Played:{" "}
-            <span className=" text-white text-xl ml-5">
-              {daysPlayed}
-            </span>
+            <span className=" text-white text-xl ml-5">{daysPlayed}</span>
           </li>
           <li className="mt-4 text-md">
             Total words guessed:{" "}
-            <span className=" text-white text-xl ml-5">
-              {totalWords}
-            </span>
+            <span className=" text-white text-xl ml-5">{totalWords}</span>
           </li>
           <li className="mt-4 text-md">
             Total correct words:{" "}
             <span className=" text-white text-xl ml-5">
-              {totalWords}/{totalGuessAttempts} ({((totalWords/totalGuessAttempts) * 100).toFixed(2)}%)
+              {totalWords}/{totalGuessAttempts} (
+              {((totalWords / totalGuessAttempts) * 100).toFixed(2)}%)
             </span>
           </li>
           <li className="mt-4 text-md">
             Total Score:{" "}
-            <span className=" text-white text-xl ml-5">
-              {totalScore}
-            </span>
+            <span className=" text-white text-xl ml-5">{totalScore}</span>
           </li>
         </ul>
       </div>
