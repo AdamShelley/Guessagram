@@ -12,7 +12,7 @@ type CorrectWordProp = {
   submittedScore: boolean;
   setSubmittedScore: (submitted: boolean) => void;
   dailyLetters: string[];
-  todaysAttempts: number
+  todaysAttempts: number;
 };
 
 type FormData = {
@@ -22,7 +22,6 @@ type FormData = {
     word: string;
     score: number;
   };
-  
 };
 
 export default function ScoreContainer({
@@ -30,10 +29,11 @@ export default function ScoreContainer({
   submittedScore,
   setSubmittedScore,
   dailyLetters,
-  todaysAttempts
+  todaysAttempts,
 }: CorrectWordProp) {
   const [userName, setUserName] = useState("");
   const [score, setScore] = useState(0);
+  
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(
@@ -54,23 +54,13 @@ export default function ScoreContainer({
 
   // Calculate the individual word score
   const calculateScore = (word: string) => {
+    console.log("Calculating Score");
     let wordScore: number = 0;
 
     word.split("").forEach((letter: string) => {
       const num: number = scores[letter.toLowerCase()];
       wordScore += num;
     });
-
-    // Did user use all letters - needs testing
-    if (word.split("").length === 6) {
-      word.split("").every((element) => {
-        if (!dailyLetters.includes(element)) {
-          return;
-        }
-      });
-
-      wordScore += 20;
-    }
 
     return wordScore;
   };
@@ -127,7 +117,7 @@ export default function ScoreContainer({
           daysPlayed: 1,
           totalWords: correctWordlist.length,
           totalScore: score,
-          totalGuessAttempts: todaysAttempts
+          totalGuessAttempts: todaysAttempts,
         })
       );
     } else {
@@ -137,7 +127,7 @@ export default function ScoreContainer({
           daysPlayed: storedStats.daysPlayed + 1,
           totalWords: storedStats.totalWords + correctWordlist.length,
           totalScore: storedStats.totalScore + score,
-          totalGuessAttempts: storedStats.totalGuessAttempts + todaysAttempts
+          totalGuessAttempts: storedStats.totalGuessAttempts + todaysAttempts,
         })
       );
     }
@@ -153,6 +143,8 @@ export default function ScoreContainer({
     wordListWithScore = generateWordListWithScore();
     setScore(totalScore);
   }, [correctWordlist]);
+
+  console.log(dailyLetters);
 
   return (
     <div className="mt-10 bg-slate-800 border border-slate-700 rounded-lg  shadow-lg p-5">

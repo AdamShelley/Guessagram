@@ -70,7 +70,7 @@ export default function () {
         />
       )}
 
-      {correctWordlist.length >= 1 && (
+      {correctWordlist.length >= 1  &&  (
         <ScoreContainer
           correctWordlist={correctWordlist}
           submittedScore={submittedScore}
