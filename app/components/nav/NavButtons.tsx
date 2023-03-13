@@ -27,6 +27,7 @@ export default function Navbuttons() {
           <button
             className="w-8 h-8 bg-slate-700 m-1 rounded-md text-xs"
             onClick={() => setShowRules(true)}
+            aria-label="rules"
           >
             <FontAwesomeIcon
               onClick={() => setShowStats(false)}

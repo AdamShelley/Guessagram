@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="py-4 inset-x-0 bottom-0">
-      <h4 className="mt-10 text-xs">
+      <p className="mt-10 text-xs">
         Created by{"  "}
         <a
           href="https://adamshelley.com"
@@ -11,7 +11,7 @@ export default function Footer() {
         >
            Adam Shelley
         </a>
-      </h4>
+      </p>
     </footer>
   );
 }

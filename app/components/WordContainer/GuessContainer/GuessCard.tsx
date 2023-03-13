@@ -23,8 +23,9 @@ export default function GuessCard({ letters, word, setWord }: LetterProps) {
   return (
     <div className="flex flex-col align-center justify-center text-center">
       <div className="h-15">
-      {/* border-b border-slate-600 */}
+    
         <input
+          name="guessInput"
           maxLength={6}
           className="p-3 border-b border-slate-600 bg-transparent text-white text-5xl w-9/12 h-full text-center"
           type="text"
@@ -32,8 +33,8 @@ export default function GuessCard({ letters, word, setWord }: LetterProps) {
           onChange={handleInput}
           autoComplete="off"
           disabled={true}
+          aria-label="Guess Input"
         />
-        
       </div>
     </div>
   );

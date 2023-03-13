@@ -89,6 +89,7 @@ export default function LetterCard({
           <button
             disabled={!submittedScore}
             className="m-2 p-2 h-15 w-12 lg:w-15 lg:h-15 rounded-lg cursor-pointer text-gray-900 text-center  active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out duration-300"
+            aria-label="backspace"
           >
             <FontAwesomeIcon
               onClick={clickBackspace}
