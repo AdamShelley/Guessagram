@@ -10,9 +10,11 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     try {
-      // Generate new letters
-      // IF API KEY does not match body dont generate new letters
-      // TBC
+      const {api_key} = req.body;
+      
+      if (api_key !== process.env.API_KEY) {
+        return res.status(404).json({message: 'Not allowed here'})
+      }
       
 
       const generatedLetters = generateLetters({ vowels: 2 });
