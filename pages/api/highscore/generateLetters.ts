@@ -10,7 +10,7 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     try {
-      const {api_key} = req.body;
+      const {api_key} = req.headers;
       
       if (api_key !== process.env.API_KEY) {
         return res.status(401).json({message: 'Not allowed here'})

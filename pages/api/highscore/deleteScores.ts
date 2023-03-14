@@ -8,7 +8,7 @@ export default async function handler(
   if (req.method === "DELETE") {
     try {
       
-      const {api_key} = req.body;
+      const {api_key} = req.headers;
       
       console.log(api_key, process.env.API_KEY)
       if (api_key !== process.env.API_KEY) {
