@@ -7,8 +7,10 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
+
+
     try {
-      const { userName, score, highestScoreWord } = req.body.data;
+      const { userName, score, highestScoreWord} = req.body.data;
 
       const user = await prisma.score.create({
         data: {

@@ -13,6 +13,8 @@ export default async function handler(
       // Generate new letters
       // IF API KEY does not match body dont generate new letters
       // TBC
+      
+
       const generatedLetters = generateLetters({ vowels: 2 });
       await prisma.letters.deleteMany();
 

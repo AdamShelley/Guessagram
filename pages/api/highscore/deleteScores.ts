@@ -7,7 +7,13 @@ export default async function handler(
 ) {
   if (req.method === "DELETE") {
     try {
-      // ADD API LOCK
+      
+      const {api_key} = req.body;
+      
+      if (api_key !== process.env.API_KEY) {
+        return res.status(404).json({message: 'Not allowed here'})
+      }
+
       const deleteAllScores = await prisma.score.deleteMany();
 
       res.status(200).json(deleteAllScores);

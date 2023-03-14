@@ -16,9 +16,6 @@ export default function ShareScore({
   //   }).join('')
 
 
-
-
-
   const message = `Check out my score on *Guesswords*\nMy total score was: ${totalScore} from ${
     correctWordlist.length
   } words.\nMy words were: ${correctWordlist.map(
