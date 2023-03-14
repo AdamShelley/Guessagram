@@ -13,7 +13,7 @@ export default async function handler(
       const {api_key} = req.body;
       
       if (api_key !== process.env.API_KEY) {
-        return res.status(404).json({message: 'Not allowed here'})
+        return res.status(401).json({message: 'Not allowed here'})
       }
       
 
