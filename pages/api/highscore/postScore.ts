@@ -2,6 +2,7 @@ import prisma from "../../../prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -9,8 +10,18 @@ export default async function handler(
   if (req.method === "POST") {
 
 
+    
+
     try {
-      const { userName, score, highestScoreWord} = req.body.data;
+      const { userName, score, highestScoreWord, api_key} = req.body.data;
+
+      if (!api_key || api_key !== process.env.API_KEY) {
+        return res.status(401).json({message: 'Not authorized'})
+      }
+
+      if (score > 250) {
+        return res.status(401).json({message: 'I just dont believe you.. '})
+      }
 
       const user = await prisma.score.create({
         data: {

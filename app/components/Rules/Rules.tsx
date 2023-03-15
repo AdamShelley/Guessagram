@@ -34,15 +34,15 @@ export default function Rules({ setShowRules }: ToggleProps) {
           </li>
           <li className="mt-2">
             <p>
-              3. You have <span className="font-bold">10</span> chances, pick
+              4. You have <span className="font-bold">10</span> chances, pick
               your words wisely.
             </p>
           </li>
           <li className="mt-2">
-            <p>4. There is a big bonus if you can use all letters. </p>
+            <p>5. There is a big bonus if you can use all letters. </p>
           </li>
           <li className="mt-2 mb-10">
-            <p>5. Once you press submit, that is it for the day.</p>
+            <p>6. Once you press submit, that is it for the day.</p>
           </li>
         </ul>
       </div>

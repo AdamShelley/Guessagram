@@ -8,9 +8,7 @@ export default async function handler(
   if (req.method === "DELETE") {
     try {
       
-      const {api_key} = req.headers;
-      
-      console.log(api_key, process.env.API_KEY)
+      const {api_key} = req.headers;      
       if (api_key !== process.env.API_KEY) {
         return res.status(401).json({message: 'Not allowed here'})
       }

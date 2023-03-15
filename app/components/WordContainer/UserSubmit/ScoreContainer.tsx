@@ -144,7 +144,7 @@ export default function ScoreContainer({
     setScore(totalScore);
   }, [correctWordlist]);
 
-  console.log(dailyLetters);
+  
 
   return (
     <div className="mt-10 bg-slate-800 border border-slate-700 rounded-lg  shadow-lg p-5">
