@@ -8,10 +8,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-
-
-    
-
     try {
       const { userName, score, highestScoreWord} = req.body.data;
 
