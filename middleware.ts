@@ -11,7 +11,6 @@ export function middleware(req: NextRequest) {
 
   if (pathname.startsWith(`/api/highscore`)) {
     if (!req.headers.get("referer")?.includes(process.env.APP_URL_PROD as string)) {
-      console.log('uh oh!')
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
   }

@@ -13,12 +13,9 @@ export default async function handler(
     
 
     try {
-      const { userName, score, highestScoreWord, api_key} = req.body.data;
+      const { userName, score, highestScoreWord} = req.body.data;
 
-      if (!api_key || api_key !== process.env.API_KEY) {
-        return res.status(401).json({message: 'Not authorized'})
-      }
-
+      
       if (score > 250) {
         return res.status(401).json({message: 'I just dont believe you.. '})
       }

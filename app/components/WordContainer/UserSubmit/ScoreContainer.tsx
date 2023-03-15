@@ -49,6 +49,7 @@ export default function ScoreContainer({
       onSuccess: (_) => {
         queryClient.invalidateQueries(["get-scores"]);
       },
+
     }
   );
 
