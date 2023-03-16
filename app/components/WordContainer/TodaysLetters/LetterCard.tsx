@@ -25,7 +25,8 @@ export default function LetterCard({
   setLetterClick,
   setWord,
   submittedScore,
-  setSubmittedScore
+  setSubmittedScore,
+  setCorrectWordlist
 }: LetterClick) {
   // Fetch the letters of the day
 
@@ -39,12 +40,6 @@ export default function LetterCard({
 
       const currentDailyLetter = JSON.parse(localStorage.getItem("dailyData")!);
 
-      
-      if (!currentDailyLetter.letters != data.letter ){
-        console.log('local storage does not match letter')
-        localStorage.removeItem('')
-      }
-
       const setLettersInStorage = () => {
         const dailyData = JSON.stringify({
           letters: data.letter,
@@ -55,6 +50,7 @@ export default function LetterCard({
         localStorage.removeItem("wordList");
         localStorage.removeItem("word-flow-submit");
         setSubmittedScore(false);
+        setCorrectWordlist([])
       };
 
       // If no localStorage -> Create

@@ -3,4 +3,5 @@ export type LetterClick = {
   setWord: any;
   submittedScore: boolean
   setSubmittedScore: (submitted: boolean) => void;
+  setCorrectWordlist: (list: string[] | []) => void;
 };

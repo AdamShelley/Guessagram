@@ -11,7 +11,6 @@ type CorrectWordProp = {
   correctWordlist: string[];
   submittedScore: boolean;
   setSubmittedScore: (submitted: boolean) => void;
-  dailyLetters: string[];
   todaysAttempts: number;
 };
 
@@ -28,8 +27,8 @@ export default function ScoreContainer({
   correctWordlist,
   submittedScore,
   setSubmittedScore,
-  dailyLetters,
   todaysAttempts,
+  
 }: CorrectWordProp) {
   const [userName, setUserName] = useState("");
   const [score, setScore] = useState(0);
@@ -153,6 +152,8 @@ export default function ScoreContainer({
     wordListWithScore = generateWordListWithScore();
     setScore(totalScore);
   }, [correctWordlist]);
+
+  
 
   return (
     <div className="mt-10 bg-slate-800 border border-slate-700 rounded-lg  shadow-lg p-5">

@@ -26,21 +26,20 @@ export default function () {
       localStorage.getItem("word-flow-submit")!
     );
 
-
     if (submittedScoreStatus && submittedScoreStatus.submitted) {
       setSubmittedScore(true);
     }
 
-    const todaysLetters = JSON.parse(localStorage.getItem('dailyData')!)
+    const todaysLetters = JSON.parse(localStorage.getItem("dailyData")!);
 
     if (todaysLetters) {
-      setDailyLetters(todaysLetters.letters)
+      setDailyLetters(todaysLetters.letters);
     }
   }, []);
 
   return (
     <div className="flex flex-col lg:w-1/2 place-self-center ">
-      {submittedScore && <SubmitSuccess/>}
+      {submittedScore && <SubmitSuccess />}
 
       <GuessContainer
         setLetterClick={setLetterClick}
@@ -48,7 +47,6 @@ export default function () {
         word={word}
         setWord={setWord}
         submittedScore={submittedScore}
-        
       />
 
       <WordContainer
@@ -56,6 +54,7 @@ export default function () {
         setWord={setWord}
         submittedScore={submittedScore}
         setSubmittedScore={setSubmittedScore}
+        setCorrectWordlist={setCorrectWordlist}
       />
 
       {error && (
@@ -75,12 +74,11 @@ export default function () {
         />
       )}
 
-      {correctWordlist.length >= 1  &&  (
+      {correctWordlist.length >= 1 && (
         <ScoreContainer
           correctWordlist={correctWordlist}
           submittedScore={submittedScore}
           setSubmittedScore={setSubmittedScore}
-          dailyLetters={dailyLetters}
           todaysAttempts={todaysAttempts}
         />
       )}
