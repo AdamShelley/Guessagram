@@ -5,6 +5,7 @@ export default function WordContainer({
   setLetterClick,
   setWord,
   submittedScore,
+  setSubmittedScore
 }: LetterClick) {
   return (
     // ${submittedScore ? 'bg-slate-800 border border-slate-700 p-2 rounded-lg shadow-lg mt-10' : ''}
@@ -15,6 +16,7 @@ export default function WordContainer({
           submittedScore={submittedScore}
           setLetterClick={setLetterClick}
           setWord={setWord}
+          setSubmittedScore={setSubmittedScore}
         />
       </div>
     </div>

@@ -33,7 +33,7 @@ export default function ScoreContainer({
 }: CorrectWordProp) {
   const [userName, setUserName] = useState("");
   const [score, setScore] = useState(0);
-  
+
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(
@@ -49,19 +49,28 @@ export default function ScoreContainer({
       onSuccess: (_) => {
         queryClient.invalidateQueries(["get-scores"]);
       },
-
     }
   );
 
   // Calculate the individual word score
   const calculateScore = (word: string) => {
-    console.log("Calculating Score");
     let wordScore: number = 0;
+    const upperCase = word.toUpperCase();
+    let wordSplit = upperCase.split("");
+    
 
-    word.split("").forEach((letter: string) => {
+    wordSplit.forEach((letter: string) => {
       const num: number = scores[letter.toLowerCase()];
       wordScore += num;
     });
+
+    // Test if all letters are used
+    if (wordSplit.length === 6) {
+      const letters = JSON.parse(localStorage.getItem("dailyData")!).letters;
+      wordSplit.sort()
+      letters.sort();
+      if (JSON.stringify(letters) == JSON.stringify(wordSplit)) wordScore += 20;
+    }
 
     return wordScore;
   };
@@ -144,8 +153,6 @@ export default function ScoreContainer({
     wordListWithScore = generateWordListWithScore();
     setScore(totalScore);
   }, [correctWordlist]);
-
-  
 
   return (
     <div className="mt-10 bg-slate-800 border border-slate-700 rounded-lg  shadow-lg p-5">

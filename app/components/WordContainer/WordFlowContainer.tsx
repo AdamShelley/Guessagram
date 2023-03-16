@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import SubmitSuccess from "../CompletedDay/SubmitSuccess";
 import GuessContainer from "./GuessContainer/GuessContainer";
 import SubmitButton from "./GuessContainer/SubmitButton";
 import WordContainer from "./TodaysLetters/WordContainer";
@@ -25,6 +26,7 @@ export default function () {
       localStorage.getItem("word-flow-submit")!
     );
 
+
     if (submittedScoreStatus && submittedScoreStatus.submitted) {
       setSubmittedScore(true);
     }
@@ -34,23 +36,26 @@ export default function () {
     if (todaysLetters) {
       setDailyLetters(todaysLetters.letters)
     }
-
   }, []);
 
   return (
     <div className="flex flex-col lg:w-1/2 place-self-center ">
+      {submittedScore && <SubmitSuccess/>}
+
       <GuessContainer
         setLetterClick={setLetterClick}
         letterClicked={letterClicked}
         word={word}
         setWord={setWord}
         submittedScore={submittedScore}
+        
       />
 
       <WordContainer
         setLetterClick={setLetterClick}
         setWord={setWord}
         submittedScore={submittedScore}
+        setSubmittedScore={setSubmittedScore}
       />
 
       {error && (

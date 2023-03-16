@@ -1,9 +1,8 @@
+import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useEffect } from "react";
 
 import GuessCard from "./GuessCard";
-import SubmitSuccess from "../../CompletedDay/SubmitSuccess";
 
 type GuessProps = {
   letterClicked: string;
@@ -23,11 +22,8 @@ export default function GuessContainer({
   setLetterClick,
   word,
   setWord,
-
   submittedScore,
 }: GuessProps) {
-  if (submittedScore) return <SubmitSuccess />;
-
   const { data } = useQuery({
     queryFn: fetchLetters,
     queryKey: ["get-letters"],
@@ -40,6 +36,8 @@ export default function GuessContainer({
     }
   }, [letterClicked]);
 
+
+
   return (
     <>
       {!submittedScore && (
@@ -47,15 +45,21 @@ export default function GuessContainer({
           <div className="flex justify-center align-center py-2 mt-5">
             {data && (
               <div className="flex flex-col">
-                <div className={`flex align-center justify-center ${word.length === 0 && 'mb-7'}`}>
+                <div
+                  className={`flex align-center justify-center ${
+                    word.length === 0 && "mb-7"
+                  }`}
+                >
                   <GuessCard
                     letters={data?.letter}
                     word={word}
                     setWord={setWord}
                   />
                 </div>
-                
-                {word.length > 0 && <p className={`self-center text-sm mt-2`}>{word.length}/6</p>}
+
+                {word.length > 0 && (
+                  <p className={`self-center text-sm mt-2`}>{word.length}/6</p>
+                )}
               </div>
             )}
             {/* Skeleton */}
