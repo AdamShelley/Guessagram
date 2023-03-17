@@ -18,7 +18,7 @@ export default function SubmitButton({
   setError,
   correctWordlist,
   setCorrectWordlist,
-  setTodaysAttempts
+  setTodaysAttempts,
 }: WordProps) {
   const [tries, setTries] = useState<number>(0);
 
@@ -38,33 +38,37 @@ export default function SubmitButton({
       return;
     }
 
-    console.log(correctWordlist)
+    console.log(correctWordlist);
 
     if (correctWordlist.includes(completeWord)) {
       return setError("Already added that word!");
     }
 
-    setTodaysAttempts((attempts: any) => attempts + 1)
+    setTodaysAttempts((attempts: any) => attempts + 1);
 
     const res = await fetch(
       `https://api.dictionaryapi.dev/api/v2/entries/en/${completeWord}`
     );
 
     const data = await res.json();
+    const word = data[0].word;
+    const definition = data[0].meanings[0].definitions[0].definition;
+
+    console.log(data[0].meanings[0].definitions[0].definition);
 
     if (data.title === "No Definitions Found") {
       return setError("Not a real word");
     }
 
-    if (correctWordlist.includes(data[0].word)) {
+    if (correctWordlist.includes(word)) {
       return setError("Already added that word!");
     }
 
-    setCorrectWordlist((prev: any) => [...prev, data[0].word]);
+    setCorrectWordlist((prev: any) => [...prev, word]);
 
     // LocalStorage
     if (typeof window !== "undefined") {
-      handleLocalStorage(completeWord);
+      handleLocalStorage(completeWord, definition);
     }
 
     setError("");
@@ -80,12 +84,17 @@ export default function SubmitButton({
     });
   };
 
-  const handleLocalStorage = (newWord: string) => {
-    const oldwordList = localStorage.getItem("wordList");
+  const handleLocalStorage = (newWord: string, definition: string) => {
+    const oldwordList = localStorage.getItem("wordList")!;
+    const oldDefList = localStorage.getItem("definitions")!;
+
+    console.log(oldDefList)
 
     // handle first word
     if (!oldwordList) {
+      console.log('setting initial word localstorage')
       localStorage.setItem("wordList", JSON.stringify([newWord]));
+      localStorage.setItem("definitions", JSON.stringify([{newWord, definition}]));
       return;
     }
 
@@ -93,6 +102,10 @@ export default function SubmitButton({
     const currentList = JSON.parse(oldwordList);
     const newList = [newWord, ...currentList];
     localStorage.setItem("wordList", JSON.stringify(newList));
+
+    const currentDef = JSON.parse(oldDefList);
+    const newDefList = [{newWord, definition}, ...currentDef]
+    localStorage.setItem('definitions', JSON.stringify(newDefList))
   };
 
   // Add this list to tries, do not allow same words to be submitted
