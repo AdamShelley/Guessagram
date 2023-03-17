@@ -48,6 +48,7 @@ export default function LetterCard({
         localStorage.setItem("dailyData", dailyData);
 
         localStorage.removeItem("wordList");
+        localStorage.removeItem("definitions");
         localStorage.removeItem("word-flow-submit");
         setSubmittedScore(false);
         setCorrectWordlist([])

@@ -156,7 +156,7 @@ export default function ScoreContainer({
 
   const getDefinition = (word:string) => {
     const wordAndDef = definitions.filter((w:WordInterface) => word === w.newWord );
-    return wordAndDef[0].definition
+    return wordAndDef[0]?.definition
   };
 
   useEffect(() => {
