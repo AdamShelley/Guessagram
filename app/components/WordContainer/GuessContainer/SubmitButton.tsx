@@ -8,8 +8,9 @@ type WordProps = {
   setWord: (word: string) => void;
   setError: (error: string) => void;
   correctWordlist: string[];
-  setCorrectWordlist: any;
-  setTodaysAttempts: any;
+  setCorrectWordlist: (prev: string[]) => void; 
+  setTodaysAttempts: (update: (attempts: number) => number) => void;
+  setDefinitions: (prev: string[]) => void;
 };
 
 export default function SubmitButton({
@@ -19,6 +20,7 @@ export default function SubmitButton({
   correctWordlist,
   setCorrectWordlist,
   setTodaysAttempts,
+  setDefinitions
 }: WordProps) {
   const [tries, setTries] = useState<number>(0);
 
@@ -44,7 +46,7 @@ export default function SubmitButton({
       return setError("Already added that word!");
     }
 
-    setTodaysAttempts((attempts: any) => attempts + 1);
+    setTodaysAttempts((attempts: number) => attempts + 1);
 
     const res = await fetch(
       `https://api.dictionaryapi.dev/api/v2/entries/en/${completeWord}`
@@ -53,6 +55,7 @@ export default function SubmitButton({
     const data = await res.json();
     const word = data[0].word;
     const definition = data[0].meanings[0].definitions[0].definition;
+
 
     console.log(data[0].meanings[0].definitions[0].definition);
 
@@ -64,7 +67,8 @@ export default function SubmitButton({
       return setError("Already added that word!");
     }
 
-    setCorrectWordlist((prev: any) => [...prev, word]);
+    setCorrectWordlist((prev: string[]) => [...prev, word]);
+    setDefinitions((prev:string[]) => [...prev, {word, definition}])
 
     // LocalStorage
     if (typeof window !== "undefined") {
@@ -84,28 +88,50 @@ export default function SubmitButton({
     });
   };
 
+  // const handleLocalStorage = (newWord: string, definition: string) => {
+  //   const oldwordList = localStorage.getItem("wordList")!;
+  //   const oldDefList = localStorage.getItem("definitions")!;
+
+  //   console.log(oldDefList)
+
+  //   // handle first word
+  //   if (!oldwordList) {
+  //     console.log('setting initial word localstorage')
+  //     localStorage.setItem("wordList", JSON.stringify([newWord]));
+  //     localStorage.setItem("definitions", JSON.stringify([{newWord, definition}]));
+  //     return;
+  //   }
+
+  //   // If localstorageItem exists
+  //   const currentList = JSON.parse(oldwordList);
+  //   const newList = [newWord, ...currentList];
+  //   localStorage.setItem("wordList", JSON.stringify(newList));
+
+  //   const currentDef = JSON.parse(oldDefList);
+  //   const newDefList = [{newWord, definition}, ...currentDef]
+  //   localStorage.setItem('definitions', JSON.stringify(newDefList))
+  // };
+
   const handleLocalStorage = (newWord: string, definition: string) => {
-    const oldwordList = localStorage.getItem("wordList")!;
-    const oldDefList = localStorage.getItem("definitions")!;
-
-    console.log(oldDefList)
-
-    // handle first word
-    if (!oldwordList) {
-      console.log('setting initial word localstorage')
-      localStorage.setItem("wordList", JSON.stringify([newWord]));
-      localStorage.setItem("definitions", JSON.stringify([{newWord, definition}]));
-      return;
+    const oldWordList = localStorage.getItem("wordList") || "[]";
+    const oldDefList = localStorage.getItem("definitions") || "[]";
+  
+    const currentList = JSON.parse(oldWordList);
+    const currentDefList = JSON.parse(oldDefList);
+  
+    // Check if the new word already exists in the list
+    const wordIndex = currentList.findIndex((word: any) => word.word === newWord);
+    if (wordIndex >= 0) {
+      return setError("Already added that word!");
     }
-
-    // If localstorageItem exists
-    const currentList = JSON.parse(oldwordList);
-    const newList = [newWord, ...currentList];
+  
+    // Add the new word and definition to the list
+    const newList = [newWord , ...currentList];
+    const newDefList = [{ word: newWord, definition }, ...currentDefList];
+  
+    // Store the updated lists in localStorage
     localStorage.setItem("wordList", JSON.stringify(newList));
-
-    const currentDef = JSON.parse(oldDefList);
-    const newDefList = [{newWord, definition}, ...currentDef]
-    localStorage.setItem('definitions', JSON.stringify(newDefList))
+    localStorage.setItem("definitions", JSON.stringify(newDefList));
   };
 
   // Add this list to tries, do not allow same words to be submitted

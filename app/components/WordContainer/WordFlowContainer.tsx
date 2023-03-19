@@ -13,6 +13,7 @@ export default function () {
   const [submittedScore, setSubmittedScore] = useState(false);
   const [letterClicked, setLetterClick] = useState<string>("");
   const [todaysAttempts, setTodaysAttempts] = useState(0);
+  const [definitions, setDefinitions] = useState<string[]>([])
   const [word, setWord] = useState<string>("");
   const [error, setError] = useState<string>("");
 
@@ -71,6 +72,7 @@ export default function () {
           setWord={setWord}
           setError={setError}
           setTodaysAttempts={setTodaysAttempts}
+          setDefinitions={setDefinitions}
         />
       )}
 
@@ -80,6 +82,7 @@ export default function () {
           submittedScore={submittedScore}
           setSubmittedScore={setSubmittedScore}
           todaysAttempts={todaysAttempts}
+          definitions={definitions}
         />
       )}
     </div>

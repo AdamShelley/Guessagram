@@ -6,19 +6,17 @@ import axios, { AxiosError } from "axios";
 import { toast } from "react-hot-toast";
 import ShareScore from "../../CompletedDay/ShareScore";
 import { scores } from "@/app/utils/ScoreOptions";
-import DefinitionModal from "./DefinitionModal";
 
 type CorrectWordProp = {
   correctWordlist: string[];
   submittedScore: boolean;
   setSubmittedScore: (submitted: boolean) => void;
   todaysAttempts: number;
+  definitions: {
+    word: string;
+    definition: string;
+  }[];
 };
-
-interface WordInterface {
-  newWord: string;
-  definition: string;
-}
 
 type FormData = {
   userName: string;
@@ -37,10 +35,8 @@ export default function ScoreContainer({
 }: CorrectWordProp) {
   const [userName, setUserName] = useState("");
   const [score, setScore] = useState(0);
-  const targetRef = useRef(null);
-  const queryClient = useQueryClient();
 
-  const definitions:WordInterface[] = JSON.parse(localStorage.getItem("definitions")!);
+  const queryClient = useQueryClient();
 
   const { mutate } = useMutation(
     async (data: FormData) =>
@@ -154,18 +150,10 @@ export default function ScoreContainer({
     setSubmittedScore(true);
   };
 
-  const getDefinition = (word:string) => {
-    const wordAndDef = definitions.filter((w:WordInterface) => word === w.newWord );
-    return wordAndDef[0]?.definition
-  };
-
   useEffect(() => {
     wordListWithScore = generateWordListWithScore();
     setScore(totalScore);
   }, [correctWordlist]);
-
-
- 
 
   return (
     <div className="mt-10 bg-slate-800 border border-slate-700 rounded-lg  shadow-lg p-5">
@@ -179,16 +167,8 @@ export default function ScoreContainer({
               key={word.word}
             >
               <p>{index + 1}</p>
-              <p
-                className="text-gray-100 text-md cursor-pointer"
-                ref={targetRef}
-              >
-                <DefinitionModal
-                  targetRef={targetRef}
-                  definition={getDefinition(word.word)}
-                >
-                  {word.word.toUpperCase()}
-                </DefinitionModal>
+              <p className="text-gray-100 text-md cursor-pointer">
+                {word.word.toUpperCase()}
               </p>
 
               <p className="text-md">{word.score} points</p>
