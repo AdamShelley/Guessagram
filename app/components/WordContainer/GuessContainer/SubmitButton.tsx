@@ -8,9 +8,9 @@ type WordProps = {
   setWord: (word: string) => void;
   setError: (error: string) => void;
   correctWordlist: string[];
-  setCorrectWordlist: (prev: string[]) => void; 
+  setCorrectWordlist: (prev: any) => void; 
   setTodaysAttempts: (update: (attempts: number) => number) => void;
-  setDefinitions: (prev: string[]) => void;
+  setDefinitions: (prev: any) => void;
 };
 
 export default function SubmitButton({
@@ -67,8 +67,8 @@ export default function SubmitButton({
       return setError("Already added that word!");
     }
 
-    setCorrectWordlist((prev: string[]) => [...prev, word]);
-    setDefinitions((prev:string[]) => [...prev, {word, definition}])
+    setCorrectWordlist((prev: any) => [...prev, word]);
+    setDefinitions((prev:any) => [...prev, {word, definition}])
 
     // LocalStorage
     if (typeof window !== "undefined") {
