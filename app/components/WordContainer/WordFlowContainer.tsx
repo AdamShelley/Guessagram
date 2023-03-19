@@ -82,7 +82,7 @@ export default function () {
           submittedScore={submittedScore}
           setSubmittedScore={setSubmittedScore}
           todaysAttempts={todaysAttempts}
-          definitions={definitions}
+          
         />
       )}
     </div>

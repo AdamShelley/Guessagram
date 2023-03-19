@@ -12,10 +12,7 @@ type CorrectWordProp = {
   submittedScore: boolean;
   setSubmittedScore: (submitted: boolean) => void;
   todaysAttempts: number;
-  definitions: {
-    word: string;
-    definition: string;
-  }[];
+  
 };
 
 type FormData = {
