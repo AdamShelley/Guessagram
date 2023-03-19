@@ -16,7 +16,7 @@ type CorrectWordProp = {
     word: string;
     definition: string;
   }[];
-  setDefinitions: (def: object) => void;
+  setDefinitions: (def: []) => void;
 };
 
 type FormData = {
