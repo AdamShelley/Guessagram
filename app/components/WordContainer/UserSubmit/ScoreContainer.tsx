@@ -12,7 +12,11 @@ type CorrectWordProp = {
   submittedScore: boolean;
   setSubmittedScore: (submitted: boolean) => void;
   todaysAttempts: number;
-  
+  definitions: {
+    word: string;
+    definition: string;
+  }[];
+  setDefinitions: (def: object) => void;
 };
 
 type FormData = {
@@ -29,10 +33,12 @@ export default function ScoreContainer({
   submittedScore,
   setSubmittedScore,
   todaysAttempts,
+  definitions,
+  setDefinitions
 }: CorrectWordProp) {
   const [userName, setUserName] = useState("");
   const [score, setScore] = useState(0);
-
+  const [modalDefinition, setModalDefinition] = useState<string>('')
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(
@@ -147,10 +153,30 @@ export default function ScoreContainer({
     setSubmittedScore(true);
   };
 
+  const showDefinitionHandler = (word: string) => {
+    const correctDefinition = definitions.filter(w => w.word === word);
+    if (!correctDefinition) return;
+    setModalDefinition(correctDefinition[0].definition)    
+  };
+
   useEffect(() => {
     wordListWithScore = generateWordListWithScore();
     setScore(totalScore);
   }, [correctWordlist]);
+
+  // Check definitions
+  useEffect(() => {
+    
+    if (definitions.length === 0 && correctWordlist.length !== 0) {
+      console.log("We have words but no definitions!");
+      const defFromLocalStorage = JSON.parse(localStorage.getItem('definitions')!);
+      if (!defFromLocalStorage) return;
+
+      setDefinitions(defFromLocalStorage)
+    }
+  }, []);
+
+  console.log(definitions);
 
   return (
     <div className="mt-10 bg-slate-800 border border-slate-700 rounded-lg  shadow-lg p-5">
@@ -164,13 +190,18 @@ export default function ScoreContainer({
               key={word.word}
             >
               <p>{index + 1}</p>
-              <p className="text-gray-100 text-md cursor-pointer">
+              <p
+                className="text-gray-100 text-md cursor-pointer"
+                onClick={() => showDefinitionHandler(word.word)}
+              >
                 {word.word.toUpperCase()}
               </p>
 
               <p className="text-md">{word.score} points</p>
+              
             </li>
           ))}
+          <p>{modalDefinition}</p>
       </ul>
       {submittedScore && (
         <>
