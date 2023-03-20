@@ -6,6 +6,7 @@ import axios, { AxiosError } from "axios";
 import { toast } from "react-hot-toast";
 import ShareScore from "../../CompletedDay/ShareScore";
 import { scores } from "@/app/utils/ScoreOptions";
+import Definition from "./Definition";
 
 type CorrectWordProp = {
   correctWordlist: string[];
@@ -201,7 +202,8 @@ export default function ScoreContainer({
               
             </li>
           ))}
-          <p>{modalDefinition}</p>
+          {modalDefinition && <Definition def={modalDefinition}/>}
+          
       </ul>
       {submittedScore && (
         <>
