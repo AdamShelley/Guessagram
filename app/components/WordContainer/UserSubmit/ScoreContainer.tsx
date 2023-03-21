@@ -216,26 +216,27 @@ export default function ScoreContainer({
       )}
       {wordListWithScore.length >= 1 && !submittedScore && (
         <div className="border-dashed border-t-2 border-slate-700">
-          <h3 className="text-xl mt-10 m-auto align-center text-center">
+          {/* [<h3 className="text-xl mt-10 m-auto align-center text-center">
             Submit your daily result
-          </h3>
+          </h3>] */}
           <form
             onSubmit={submitScore}
             className="flex flex-col align-center justify-center "
           >
-            <label htmlFor="name" className="mt-5 text-sm m-auto">
-              Add your nickname
+            <label htmlFor="name" className="mt-5 text-md m-auto">
+              Submit your result
             </label>
             <input
-              className="text-gray-900 p-2 my-2 mt-3 rounded-sm bg-slate-100 w-9/12 align-center m-auto lg:w-1/2"
+              className="text-gray-900 p-2 my-2 mt-3 rounded-sm bg-slate-200 w-1/2 align-center m-auto lg:w-1/4"
               type="text"
               name="name"
+              placeholder="Add your name"
               onChange={(e) => setUserName(e.target.value)}
             />
 
             <button
               id="submit"
-              className="mt-3 text-sm bg-teal-900 text-white py-2 px-6 rounded-sm disabled:opacity-25 self-center lg:w-1/2"
+              className="mt-3 text-sm bg-teal-900 text-white py-2 px-6 rounded-sm disabled:opacity-25 self-center lg:w-1/4"
             >
               Submit
             </button>

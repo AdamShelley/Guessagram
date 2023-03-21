@@ -51,22 +51,22 @@ export default function Stats({
         <h2 className="px-4 text-left text-xl text-white">Statistics</h2>
 
         <ul className="text-left text-sm md:text-lg p-4">
-          <li className="mt-2 text-md">
+          <li className="mt-2 text-md flex justify-between mr-5">
             Days Played:{" "}
             <span className=" text-white text-md  ml-5">{daysPlayed}</span>
           </li>
-          <li className="mt-2 text-md">
+          <li className="mt-2 text-md flex justify-between mr-5">
             Total words guessed:{" "}
             <span className=" text-white text-md  ml-5">{totalWords}</span>
           </li>
-          <li className="mt-2 text-md">
+          <li className="mt-2 text-md flex justify-between mr-5">
             Total correct words:{" "}
             <span className=" text-white text-md  ml-5">
               {totalWords}/{totalGuessAttempts} (
               {((totalWords / totalGuessAttempts) * 100).toFixed(2)}%)
             </span>
           </li>
-          <li className="mt-2 text-md">
+          <li className="mt-2 text-md flex justify-between mr-5">
             Total Score:{" "}
             <span className=" text-white text-md  ml-5">{totalScore}</span>
           </li>
