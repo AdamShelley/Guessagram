@@ -112,7 +112,10 @@ export default function LetterCard({
               key={letter}
               className="flex align-center justify-center align-middle m-1 p-2 h-15 w-12 lg:w-20 lg:h-20 rounded-lg cursor-pointer text-gray-900 text-2xl text-center active:border-slate-500 focus:outline-none bg-slate-300"
             >
-             <p className="text-center align-middle">{letter}</p> 
+             <p className="text-center align-middle">{letter}
+             <span className="absolute pointer-events-none right-1px lg:right lg:top-4 text-xs lg:text-sm">
+                {scores[letter.toLowerCase()]}
+              </span></p> 
             </div>
           ))}
       </div>
