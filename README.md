@@ -3,6 +3,8 @@
 ## Description
 Guessagram is an engaging word game where players are challenged to form as many words as possible from a given set of letters. This game is inspired by popular word games such as Wordle.
 
+![Guessagram](https://raw.githubusercontent.com/AdamShelley/Guessagram/master/public/pictures/pic1.png)
+
 ## Features
 - Improve your vocabulary and anagram-solving skills at your own pace.
 - Daily Challenge: Guess 10 words from the set of letters for the day and get the highest score possible.
