@@ -9,7 +9,7 @@ export default function Home() {
       <nav className="flex justify-between align-center mt-2">
         <div>
           <h1 className="text-4xl">
-            <span className="text-violet-400">Guess</span>words
+            <span className="text-violet-400">Guess</span>agram
           </h1>
         </div>
         <Navbuttons />

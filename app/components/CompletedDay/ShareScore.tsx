@@ -16,7 +16,7 @@ export default function ShareScore({
   //   }).join('')
 
 
-  const message = `Check out my score on *Guesswords*\nMy total score was: ${totalScore} from ${
+  const message = `Check out my score on *Guessagram*\nMy total score was: ${totalScore} from ${
     correctWordlist.length
   } words.\nMy words were: ${correctWordlist.map(
     (word, index) => `\n${index}: ${word}`
@@ -26,7 +26,7 @@ export default function ShareScore({
   const shareScore = () => {
     if (navigator.share) {
       navigator.share({
-        title: "Sharing your Guesswords score",
+        title: "Sharing your Guessagram score",
         text: message,
       });
     }
