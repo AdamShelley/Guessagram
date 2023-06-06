@@ -5,7 +5,7 @@ import WordFlowContainer from "./components/WordContainer/WordFlowContainer";
 
 export default function Home() {
   return (
-    <main className=" min-h-screen bg-gray-800 p-5  lg:h-screen flex flex-col align-center ">
+    <main className="min-h-screen bg-gray-800 p-5  lg:min-h-screen flex flex-col align-center ">
       <nav className="flex justify-between align-center mt-2">
         <div>
           <h1 className="text-4xl">
