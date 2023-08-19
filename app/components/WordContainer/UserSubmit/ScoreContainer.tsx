@@ -169,7 +169,7 @@ export default function ScoreContainer({
   useEffect(() => {
     
     if (definitions.length === 0 && correctWordlist.length !== 0) {
-      console.log("We have words but no definitions!");
+      // console.log("We have words but no definitions!");
       const defFromLocalStorage = JSON.parse(localStorage.getItem('definitions')!);
       if (!defFromLocalStorage) return;
 
@@ -177,7 +177,7 @@ export default function ScoreContainer({
     }
   }, []);
 
-  console.log(definitions);
+  // console.log(definitions);
 
   return (
     <div className="mt-10 bg-slate-800 border border-slate-700 rounded-lg  shadow-lg p-5">

@@ -26,7 +26,7 @@ export default function SubmitButton({
 
   const getWord = async () => {
     if (completeWord === "") {
-      console.log("No word entered");
+      // console.log("No word entered");
     }
 
     if (tries >= 10) {
@@ -39,7 +39,7 @@ export default function SubmitButton({
       return;
     }
 
-    console.log(correctWordlist);
+    // console.log(correctWordlist);
 
     if (correctWordlist.includes(completeWord)) {
       return setError("Already added that word!");
