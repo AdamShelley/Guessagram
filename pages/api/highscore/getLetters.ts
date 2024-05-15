@@ -6,6 +6,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "GET") {
+    console.log("Getting letters");
     try {
       const data = await prisma.letters.findFirst();
 
