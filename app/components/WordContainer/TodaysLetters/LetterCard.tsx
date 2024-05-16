@@ -26,7 +26,7 @@ export default function LetterCard({
   setWord,
   submittedScore,
   setSubmittedScore,
-  setCorrectWordlist
+  setCorrectWordlist,
 }: LetterClick) {
   // Fetch the letters of the day
 
@@ -35,9 +35,6 @@ export default function LetterCard({
     queryKey: ["get-letters"],
 
     onSuccess: (data) => {
-
-      
-
       const currentDailyLetter = JSON.parse(localStorage.getItem("dailyData")!);
 
       const setLettersInStorage = () => {
@@ -51,7 +48,7 @@ export default function LetterCard({
         localStorage.removeItem("definitions");
         localStorage.removeItem("word-flow-submit");
         setSubmittedScore(false);
-        setCorrectWordlist([])
+        setCorrectWordlist([]);
       };
 
       // If no localStorage -> Create
@@ -85,7 +82,7 @@ export default function LetterCard({
               onClick={letterClick}
               key={letter}
               data-letter={letter}
-              className="relative m-1 p-2 h-15 w-12 lg:w-20 lg:h-20 rounded-lg cursor-pointer text-gray-900 text-2xl text-center bg-white active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out	duration-300"
+              className="relative m-[3px] p-2 h-15 w-12 lg:w-20 lg:h-20 rounded-lg cursor-pointer text-gray-900 text-2xl text-center bg-white active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out	duration-300"
             >
               {letter}
               <span className="absolute pointer-events-none right-1px lg:right lg:top-4 text-xs lg:text-sm">
@@ -95,8 +92,8 @@ export default function LetterCard({
           ))}
         {!isLoading && data?.letter && (
           <button
-            disabled={!submittedScore}
-            className="m-2 p-2 h-15 w-12 lg:w-15 lg:h-15 rounded-lg cursor-pointer text-gray-900 text-center  active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out duration-300"
+            // disabled={!submittedScore}
+            className="z-50 m-[3px] p-2 h-15 w-12 lg:w-15 lg:h-15 rounded-lg cursor-pointer text-gray-900 text-center  active:border-slate-500 focus:outline-none focus:ring focus:ring-slate-300 ease-in-out duration-300"
             aria-label="backspace"
           >
             <FontAwesomeIcon
@@ -112,10 +109,12 @@ export default function LetterCard({
               key={letter}
               className="flex align-center justify-center align-middle m-1 p-2 h-15 w-12 lg:w-20 lg:h-20 rounded-lg cursor-pointer text-gray-900 text-2xl text-center active:border-slate-500 focus:outline-none bg-slate-300"
             >
-             <p className="text-center align-middle">{letter}
-             <span className="absolute pointer-events-none right-1px lg:right lg:top-4 text-xs lg:text-sm">
-                {scores[letter.toLowerCase()]}
-              </span></p> 
+              <p className="text-center align-middle">
+                {letter}
+                <span className="absolute pointer-events-none right-1px lg:right lg:top-4 text-xs lg:text-sm">
+                  {scores[letter.toLowerCase()]}
+                </span>
+              </p>
             </div>
           ))}
       </div>
