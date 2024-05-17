@@ -1,10 +1,10 @@
 {
     "crons": [{
-      "path": "/api/deleteScores",
+      "path": "/api/cron/deleteScores",
       "schedule": "0 0 * * *"
     },
     {
-      "path": "/api/generateLetters",
+      "path": "/api/cron/generateLetters",
       "schedule": "0 0 * * *"
     }]
   }
